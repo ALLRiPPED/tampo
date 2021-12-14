@@ -21,7 +21,7 @@ main_menu() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "TAMPO $ver  BGM Status $bgms  Volume: $vol  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " MAIN MENU " \
+        choice=$(dialog --colors --backtitle "TAMPO $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
 			01 "Theme Settings" \
@@ -46,7 +46,7 @@ themesettings() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Theme Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
+        choice=$(dialog --colors --backtitle "Theme Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             01 "Enable Halloween Theme" \
@@ -67,7 +67,7 @@ musicsettings() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Music Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Music Settings " \
+        choice=$(dialog --colors --backtitle "Music Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Music Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             01 "Enable/Disable Background Music $bgms" \
@@ -90,7 +90,7 @@ overlay_menu() {
 stats_check
 local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Choose OverLay Settings  BGM Status $bgms  Volume: $vol  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Overlay Menu " \
+        choice=$(dialog --colors --backtitle "Choose OverLay Settings  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Overlay Menu " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
             01 "Enable/Disable Overlay $ovs" \
@@ -137,7 +137,7 @@ music_select() {
 stats_check
 local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Select Your Music Choice  BGM Status $bgms  Volume: $vol  Now Playing: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
+        choice=$(dialog --colors --backtitle "Select Your Music Choice  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
             01 "Change Music Folder" \
@@ -163,7 +163,7 @@ stats_check
   while [ -z $SELECTION ]; do
     [[ "${CUR_DIR}" ]] && CUR_DIR="${CUR_DIR}"/
     local cmd=(dialog --colors \
-      --backtitle "$BACKTITLE | Current Folder: $CUR_DIR  BGM Status $bgms  Volume: $vol  Now Playing: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
+      --backtitle "$BACKTITLE | Current Folder: $CUR_DIR  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
       --title "$TITLE" \
       --menu "Choose a music directory" 20 70 20 )
     local iterator=1
@@ -516,6 +516,14 @@ else
 	export CUR_PLY
 	ms="(\Z3$(basename $CUR_PLY | tr -d '"')\Zn)"
 fi
+THEME=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+if [[ $THEME == value=\"strangerstuff\" ]]; then
+	ts="(\Z3Stranger Things\Zn)"
+elif [[ $THEME == value=\"halloweenspecial\" ]]; then
+	ts="(\Z3Halloween\Zn)"
+elif [[ $THEME == value=\"merryxmas\" ]]; then
+	ts="(\Z3Christmas\Zn)"
+else ts="(\Z3Default\Zn)"; fi
 vol=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
 vol="(\Z3$vol%\Zn)"
 if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then exs=$disable; else exs=$enable; fi
@@ -562,9 +570,9 @@ DISCLAIMER="${DISCLAIMER}TAMPO: Theme and Music Plus Overlay Script\n\n"
 DISCLAIMER="${DISCLAIMER}The background music python and control scripts have been installed on this system.\n"
 DISCLAIMER="${DISCLAIMER}This script will play MP3 & OGG files during menu navigation in either Emulation Station or Attract mode.\n"
 DISCLAIMER="${DISCLAIMER}A Few subfolders have been created in the /home/pi/RetroPie/roms/music directory with a selection of\n"
-DISCLAIMER="${DISCLAIMER}different from various builds by many good build makers.\n"
-DISCLAIMER="${DISCLAIMER}The themes you can celtect bewteen are \"halloween\" (Halloween), \"xmas\" (Christmas), and\n"
-DISCLAIMER="${DISCLAIMER}\"strangerthings\" (Stranger Things).\n"
+DISCLAIMER="${DISCLAIMER}different music from various builds by many good build makers.\n"
+DISCLAIMER="${DISCLAIMER}The themes you can seltect bewteen are \"halloween\" (Halloween), \"xmas\" (Christmas),\n"
+DISCLAIMER="${DISCLAIMER}\"strangerthings\" (Stranger Things) and \"carbonite\" (Default).\n"
 DISCLAIMER="${DISCLAIMER}This includes the themes, music, plus game splash, launching/loading, and exit screens.\n"
 DISCLAIMER="${DISCLAIMER}Launch a game, the music will stop. Upon exiting out of the game the music will begin playing again.\n"
 DISCLAIMER="${DISCLAIMER}This also lets you turn off certain options for BGM.py such as, Enable/Disable the Overlay, Fadeout effect,\n"
@@ -576,7 +584,7 @@ DISCLAIMER="${DISCLAIMER}Overlay disappeared when you change resolutions? Set po
 DISCLAIMER="${DISCLAIMER}then set it to desired postition, the overlay is compatible with all resolutions.\n"
 DISCLAIMER="${DISCLAIMER}\n"
 DISCLAIMER="${DISCLAIMER}https://github.com/ALLRiPPED/tampo\n"
-dialog --colors --backtitle "TAMPO Control Script $ver  BGM Status $bgms  Volume: $vol  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" \
+dialog --colors --backtitle "TAMPO Control Script $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" \
 --title "DISCLAIMER" \
 --msgbox "${DISCLAIMER}" 35 110
 }
