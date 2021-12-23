@@ -25,21 +25,21 @@ stats_check
         choice=$(dialog --colors --backtitle "TAMPO $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-			01 "Theme Settings" \
-			02 "Music Settings" \
+            01 "Theme Settings" \
+            02 "Music Settings" \
             03 "Overlay Settings" \
-			04 "Enable/Disable Exit Splash $exs" \
-			05 "Enable/Disable Videoloadingscreens $vls" \
-			06 "Set Videoloadingscreens Folder" \
+            04 "Enable/Disable Exit Splash $exs" \
+            05 "Enable/Disable Videoloadingscreens $vls" \
+            06 "Set Videoloadingscreens Folder" \
             07 "View TAMPO Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
-		    01) themesettings  ;;
-			02) musicsettings  ;;
+            01) themesettings  ;;
+            02) musicsettings  ;;
             03) overlay_menu  ;;
-			04) exit_splash  ;;
-			05) video_screens  ;;
-			06) set_video_screens  ;;
+            04) exit_splash  ;;
+            05) video_screens  ;;
+            06) set_video_screens  ;;
             07) disclaim  ;;
             *) break  ;;
         esac
@@ -54,14 +54,14 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             01 "Enable Halloween Theme" \
             02 "Enable Christmas Theme" \
-			03 "Enable Stranger Things Theme" \
-			04 "Reset Theme and Disable Music" \
+            03 "Enable Stranger Things Theme" \
+            04 "Reset Theme and Disable Music" \
            2>&1 > /dev/tty)
         case "$choice" in
             01) enable_halloween  ;;
             02) enable_xmas  ;;
-			03) enable_stranger  ;;
-			04) reset_theme  ;;
+            03) enable_stranger  ;;
+            04) reset_theme  ;;
             *) break  ;;
         esac
     done
@@ -75,14 +75,14 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             01 "Enable/Disable Background Music $bgms" \
             02 "Enable/Disable BGM On-Boot $bgmos" \
-			03 "Music Selection $ms" \
+            03 "Music Selection $ms" \
             04 "Volume Control $vol" \
             05 "Music Start Delay $msd" \
            2>&1 > /dev/tty)
         case "$choice" in
             01) enable_music  ;;
             02) enable_musicos  ;;
-			03) music_select  ;;
+            03) music_select  ;;
             04) set_bgm_volume  ;;
             05) music_startdelay  ;;
             *) break  ;;
