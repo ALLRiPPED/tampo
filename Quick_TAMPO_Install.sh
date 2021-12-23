@@ -4,7 +4,7 @@
 #############################################
 # Install Theme and Music Plus Overlay
 #############################################
-ver="v1.00"
+ver="v1.01"
 SCRIPT_LOC="$HOME/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="$HOME/RetroPie/roms/music"

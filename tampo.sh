@@ -1,6 +1,6 @@
 #!/bin/bash
 #TAMPO Script
-ver="v1.00"
+ver="v1.01"
 SCRIPT_LOC="/home/pi/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="/home/pi/RetroPie/roms/music"
@@ -16,6 +16,7 @@ SPL_DIR="/home/pi/RetroPie/splashscreens"
 SPLSCREEN="/etc/splashscreen.list"
 EXITSPLS="/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash"
 EXITSPLR="/opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash"
+VID_LOD_SCR="/home/pi/RetroPie/videoloadingscreens"
 
 main_menu() {
 stats_check
@@ -29,7 +30,8 @@ stats_check
             03 "Overlay Settings" \
 			04 "Enable/Disable Exit Splash $exs" \
 			05 "Enable/Disable Videoloadingscreens $vls" \
-            06 "View TAMPO Disclamer" \
+			06 "Set Videoloadingscreens Folder" \
+            07 "View TAMPO Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
 		    01) themesettings  ;;
@@ -37,7 +39,8 @@ stats_check
             03) overlay_menu  ;;
 			04) exit_splash  ;;
 			05) video_screens  ;;
-            06) disclaim  ;;
+			06) set_video_screens  ;;
+            07) disclaim  ;;
             *) break  ;;
         esac
     done
@@ -446,6 +449,63 @@ stats_check
 video_screens() {
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then sed -i -E 's|enablevideolaunch="true"|enablevideolaunch="false"|g' $RUNONSTART
 else sed -i -E 's|enablevideolaunch="false"|enablevideolaunch="true"|g' $RUNONSTART; fi
+stats_check
+}
+set_video_screens() {
+stats_check
+  CUR_LOD=""
+  NEW_LOD=""
+  SELECTION=""
+  SELECT=""
+  IFS=$'\n'
+  local SELECTION
+  CUR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"' | tr -d '"')
+  export CUR_LOD
+  while [ -z $SELECTION ]; do
+    [[ "${CUR_LOD}" ]] && CUR_LOD="${CUR_LOD}"/
+    local cmd=(dialog --colors \
+      --backtitle "$BACKTITLE | Current Folder: $CUR_LOD  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
+      --title "$TITLE" \
+      --menu "Choose a Videoloadingscreens directory" 20 70 20 )
+    local iterator=1
+    local offset=-1
+    local options=()
+    if [ "$(dirname $CUR_LOD)" != "$CUR_LOD" ]; then
+      options+=(0)
+      options+=("Parent Directory")
+      offset=$(($offset+2))
+    fi
+    options+=($iterator)
+    options+=("<Use This Directory>")
+    iterator=$(($iterator+1))
+    for DIR in $(find "$CUR_LOD" -maxdepth 1 -mindepth 1 -type d | sort); do
+      options+=($iterator)
+      options+=("$(basename $DIR)")
+      iterator=$(($iterator+1))
+    done
+    choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+    case $choice in
+      0) CUR_LOD="$(dirname $CUR_LOD)" ;;
+      1) SELECTION="$CUR_LOD" ;;
+      '') return ;;
+      *) CUR_LOD="$CUR_LOD${options[ $((2*choice + $offset )) ]}" ;;
+    esac
+  done
+  [[ "${VID_LOD_SCR}" ]] && VID_LOD_SCR="${VID_LOD_SCR}"
+  if [ "$SELECTION" != "$VID_LOD_SCR" ]; then
+    echo "Videoloadingscreens directory changed to '$SELECTION'"
+    NEW_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
+    export NEW_LOD
+    SELECT=$(echo $SELECTION | sed 's:/*$::')
+	sed -i -E "s|videoloadingscreens=${NEW_LOD}|videoloadingscreens=\"${SELECT}\"|g" $RUNONSTART
+    bgm_check
+  elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
+    echo "Videoloadingscreens directory is already '$SELECTION'"
+  else
+    return
+  fi
+  IFS=$OLDIFS
+bgm_check
 stats_check
 }
 overlay_enable() {
