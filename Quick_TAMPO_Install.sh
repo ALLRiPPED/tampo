@@ -48,7 +48,7 @@ main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             01 "Minimal Install No Extra Music" \
-			02 "Install without Custom Music" \
+            02 "Install without Custom Music" \
             03 "Full Install All Music" \
             2>&1 > /dev/tty)
         case "$choice" in
