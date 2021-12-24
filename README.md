@@ -1,4 +1,4 @@
-## TAMPO: Theme And Music Plus Overlay v1.00
+## TAMPO: Theme And Music Plus Overlay v1.01
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
@@ -6,7 +6,7 @@ And no before you ask, the default theme, Carbon, does not count you have to ins
 And then the es_settings.cfg will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apy upgrade -y`
 ## One Line Install
-     wget -qO- https://git.io/JDfjg | bash
+     curl -sSL https://git.io/JDfjg | bash
 
 If you would like to manually install this script:
 
