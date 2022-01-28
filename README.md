@@ -9,7 +9,7 @@ plus it would not hurt to run `sudo apt update -y && sudo apy upgrade -y`
      curl -sSL https://git.io/JDfjg | bash
 or
 
-	 wget -qO- https://git.io/JDfjg | bash
+	 wget -O - https://git.io/JDfjg | bash
 
 If you would like to manually install this script:
 
