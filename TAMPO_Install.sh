@@ -12,6 +12,7 @@ MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
 STMENU_DIR="$HOME/RetroPie/retropiemenu/visualtools"
 AUTOSTART="/opt/retropie/configs/all/autostart.sh"
+RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
 PYGAME_PKG="python3-pygame"
 PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil"
 cd $HOME
