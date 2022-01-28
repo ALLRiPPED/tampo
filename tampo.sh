@@ -59,12 +59,12 @@ stats_check
             05 "Reset Theme and Disable Music" \
            2>&1 > /dev/tty)
         case "$choice" in
-            01) enable_halloween  ;;
-            02) enable_xmas  ;;
-			03) enable_devils
-            04) enable_stranger  ;;
-            05) reset_theme  ;;
-            *) break  ;;
+            01) enable_halloween ;;
+            02) enable_xmas ;;
+			03) enable_devils ;;
+            04) enable_stranger ;;
+            05) reset_theme ;;
+            *) break ;;
         esac
     done
 }
@@ -250,9 +250,9 @@ NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/retrodevils"'
 CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
 CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
 NEWH_EXS='"/home/pi/RetroPie/splashscreens/RetroDevilReaperExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
+if [[ $CUR_THM == $NEW_THM ]]; then echo "Retro-Devils Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Retro-Devils Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
 pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -703,7 +703,7 @@ elif [[ $THEME == value=\"halloweenspecial\" ]]; then
 	ts="(\Z3Halloween\Zn)"
 elif [[ $THEME == value=\"merryxmas\" ]]; then
 	ts="(\Z3Christmas\Zn)"
-elif [[ $THEME == value=\"devilschromey\" ]]; then
+elif [[ $THEME == value=\"devilchromey\" ]]; then
 	ts="(\Z3Retro-Devils\Zn)"
 else ts="(\Z3Default\Zn)"; fi
 vol=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')

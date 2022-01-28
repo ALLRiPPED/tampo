@@ -97,7 +97,7 @@ then echo "All Music Found!"
 else
 	gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
 	unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/165 - 867-5309 Jenny.mp3" ]; then echo "Found Music!"; else
+if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "Found Music!"; else
 	gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
 	unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Found Music!"; else
