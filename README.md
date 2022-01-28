@@ -84,7 +84,8 @@ BGM.py Version 1.01 - Changed song_title.png to write to RAM instead of the SD C
 BGM.py Version 1.60 - Added one line install and control scripts by thepitster<br>
 ### TAMPO Credits
 The Halloween theme, music, splash, and videoloading screens are from the build [32GB]-Halloween.Candy.RPI4.2gb.4gb-Scoony and DB Project<br>
-The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br><br>
+The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br>
+Diablos Arcade by the [Retro-Devils](https://github.com/Retro-Devils/Devils-Pi "Diablos Arcade")<br>
 [Dwayne Hurst](https://github.com/retrohursty69 "Dwayne Hurst")<br>
 Version 1.00 - thepitster<br>
 Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")<br>
