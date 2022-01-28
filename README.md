@@ -80,11 +80,11 @@ Props to Livewire for the original script: https://retropie.org.uk/forum/topic/3
 Special thanks to AndrewFromMelbourne for pngview: https://github.com/AndrewFromMelbourne/raspidmx<br>
 RetroPie forum thread: https://retropie.org.uk/forum/topic/16458/modified-background-music-script-with-added-overlays<br>
 BGM Overlay code added by madmodder123<br>
-Version 1.01 - Changed song_title.png to write to RAM instead of the SD Card (Thanks zerojay!)<br>
-Version 1.60 - Added one line install and control scripts by thepitster<br>
+BGM.py Version 1.01 - Changed song_title.png to write to RAM instead of the SD Card (Thanks zerojay!)<br>
+BGM.py Version 1.60 - Added one line install and control scripts by thepitster<br>
 ### TAMPO Credits
 The Halloween theme, music, splash, and videoloading screens are from the build [32GB]-Halloween.Candy.RPI4.2gb.4gb-Scoony and DB Project<br>
 The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br><br>
-Dwayne Hurst: https://github.com/retrohursty69
+[Dwayne Hurst](https://github.com/retrohursty69 "Dwayne Hurst")<br>
 Version 1.00 - thepitster<br>
-Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")
+Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")<br>
