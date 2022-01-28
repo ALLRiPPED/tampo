@@ -1,4 +1,4 @@
-## TAMPO: Theme And Music Plus Overlay v1.01
+## TAMPO: Theme And Music Plus Overlay v1.05
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
@@ -21,7 +21,7 @@ then
 
      git clone https://github.com/ALLRiPPED/tampo.git
      cd tampo
-     git checkout tags/tampov1.00
+     git checkout tags/tampov1.05
      sudo chmod +x Quick_TAMPO_Install.sh
      ./Quick_TAMPO_Install.sh
 This will install all the files for the bgm script, themes, music, videoloading and splash screens!<br>
@@ -87,3 +87,4 @@ The Halloween theme, music, splash, and videoloading screens are from the build 
 The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br><br>
 Dwayne Hurst: https://github.com/retrohursty69
 Version 1.00 - thepitster<br>
+Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")
