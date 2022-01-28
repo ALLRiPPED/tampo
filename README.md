@@ -8,7 +8,7 @@ plus it would not hurt to run `sudo apt update -y && sudo apy upgrade -y`
 ## One Line Install
      curl -sSL https://git.io/JDfjg | bash
 or
-     wget -qO- https://git.io/JDfjg | bash
+	wget -qO- https://git.io/JDfjg | bash
 
 If you would like to manually install this script:
 
