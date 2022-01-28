@@ -4,7 +4,7 @@
 #############################################
 # Install Theme and Music Plus Overlay
 #############################################
-ver="v1.01"
+ver="v1.05"
 SCRIPT_LOC="$HOME/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="$HOME/RetroPie/roms/music"
@@ -131,6 +131,7 @@ git clone https://github.com/ALLRiPPED/tampo.git
 git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
 git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
 git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
+git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
 git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
 cd $HOME/tampo
 git checkout tags/tampo$ver
@@ -216,12 +217,15 @@ mv -f $HOME/tampo/splashscreens/Halloween.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/HalloweenExit.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/JarvisExit.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/JarvisSplash.mp4 $HOME/RetroPie/splashscreens/
+mv -f $HOME/tampo/splashscreens/RetroDevilReaperExit.mp4 $HOME/RetroPie/splashscreens/
+mv -f $HOME/tampo/splashscreens/RetroDevilReaper.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/StrangerExit.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/StrangerPi.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/videoloadingscreens/halloween $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/jarvis $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/strangerpi $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/xmas $HOME/RetroPie/videoloadingscreens/
+mv -f $HOME/tampo/videoloadingscreens/retrodevils $HOME/RetroPie/videoloadingscreens/
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')

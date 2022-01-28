@@ -1,6 +1,6 @@
 #!/bin/bash
 #TAMPO Script
-ver="v1.01"
+ver="v1.05"
 SCRIPT_LOC="/home/pi/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="/home/pi/RetroPie/roms/music"
@@ -54,14 +54,16 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             01 "Enable Halloween Theme" \
             02 "Enable Christmas Theme" \
-            03 "Enable Stranger Things Theme" \
-            04 "Reset Theme and Disable Music" \
+			03 "Enable Retro-Devils" \
+            04 "Enable Stranger Things Theme" \
+            05 "Reset Theme and Disable Music" \
            2>&1 > /dev/tty)
         case "$choice" in
             01) enable_halloween  ;;
             02) enable_xmas  ;;
-            03) enable_stranger  ;;
-            04) reset_theme  ;;
+			03) enable_devils
+            04) enable_stranger  ;;
+            05) reset_theme  ;;
             *) break  ;;
         esac
     done
@@ -237,6 +239,31 @@ else
 fi
 bgm_check
 stats_check
+}
+enable_devils() {
+CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+NEW_PLY='"/home/pi/RetroPie/roms/music/devils"'
+CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+NEW_THM="value=\"devilchromey\""
+HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/retrodevils"'
+CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
+CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/RetroDevilReaperExit.mp4"'
+if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
+sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
+echo "Restarting EmulationStaion..."
+pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+sleep 1
+killall emulationstation
+sleep 1
+if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Halloween Exit Splash already set!"
+else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
+sudo openvt -c 1 -s -f emulationstation 2>&1
+exit
 }
 enable_halloween() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
@@ -646,6 +673,8 @@ elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"
 	ms="(\Z3Halloween\Zn)"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then
 	ms="(\Z3Christmas\Zn)"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then
+	ms="(\Z3Retro-Devils\Zn)"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then
 	ms="(\Z3StrangerThings\Zn)"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/arcade"' "$SCRIPT_LOC"; then
@@ -674,6 +703,8 @@ elif [[ $THEME == value=\"halloweenspecial\" ]]; then
 	ts="(\Z3Halloween\Zn)"
 elif [[ $THEME == value=\"merryxmas\" ]]; then
 	ts="(\Z3Christmas\Zn)"
+elif [[ $THEME == value=\"devilschromey\" ]]; then
+	ts="(\Z3Retro-Devils\Zn)"
 else ts="(\Z3Default\Zn)"; fi
 vol=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
 vol="(\Z3$vol%\Zn)"
