@@ -56,14 +56,14 @@ stats_check
             02 "Enable Christmas Theme" \
 			03 "Enable Retro-Devils" \
             04 "Enable Stranger Things Theme" \
-            05 "Reset Theme and Disable Music" \
+            05 "Enable Carbonite Theme" \
            2>&1 > /dev/tty)
         case "$choice" in
             01) enable_halloween ;;
             02) enable_xmas ;;
 			03) enable_devils ;;
             04) enable_stranger ;;
-            05) reset_theme ;;
+            05) enable_carbonite ;;
             *) break ;;
         esac
     done
@@ -340,7 +340,7 @@ else sed -i -E "s|${CUR_SEXS}|${NEWX_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
-reset_theme() {
+enable_carbonite() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/.tampo"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
@@ -705,7 +705,11 @@ elif [[ $THEME == value=\"merryxmas\" ]]; then
 	ts="(\Z3Christmas\Zn)"
 elif [[ $THEME == value=\"devilchromey\" ]]; then
 	ts="(\Z3Retro-Devils\Zn)"
-else ts="(\Z3Default\Zn)"; fi
+elif [[ $THEME == value=\"carbonite\" ]]; then
+	ts="(\Z3Carbonite\Zn)"
+else
+	ts="(\Z3$(basename $THEME | tr -d '"')\Zn)"
+fi
 vol=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
 vol="(\Z3$vol%\Zn)"
 if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then exs=$disable; else exs=$enable; fi

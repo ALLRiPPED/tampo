@@ -168,6 +168,7 @@ mkdir -p /opt/retropie/configs/all/emulationstation/scripts/shutdown
 sudo cp -f $HOME/tampo/GROBOLD.ttf /usr/share/fonts/truetype/
 mv -f /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.BACKUP
 mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.BACKUP
+mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onend.sh.BACKUP
 sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
@@ -212,6 +213,7 @@ cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts
 cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/shutdown/
 mv -f $HOME/tampo/autostart.sh /opt/retropie/configs/all/
 mv -f $HOME/tampo/runcommand-onstart.sh /opt/retropie/configs/all/
+touch -f /opt/retropie/configs/all/runcommand-onend.sh
 mv -f $HOME/tampo/splashscreens/CharlieBrown.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/XmasExit.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/Halloween.mp4 $HOME/RetroPie/splashscreens/

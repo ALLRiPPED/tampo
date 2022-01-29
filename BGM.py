@@ -73,8 +73,8 @@ overlay_replace_newline = False
 overlay_size_1080p = "600x32"
 overlay_size_720p = "300x21"
 overlay_size_sd = "150x15"
-overlay_x_offset = "1320"
-overlay_y_offset = "1048"
+overlay_x_offset = "0"
+overlay_y_offset = "0"
 
 # The code below adjusts the size/location of the overlay depending upon the screen resolution
 # Adjust these to your needs
