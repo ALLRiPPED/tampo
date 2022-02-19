@@ -59,7 +59,7 @@ main_menu() {
             01) install_tampo ;;
             02) install_tampo_1 ;;
             03) install_tampo_2 ;;
-            *)  break ;;
+             *) break ;;
         esac
     done
 }
@@ -70,10 +70,12 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
 then echo "Theme Music Found!"
 else
-	if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
-	else
+        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+		echo "Theme Music Extracting Complete"
+	 else
+		echo "Extracting Theme Music"
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
 fi
 setup
 rebootq
@@ -86,15 +88,20 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
 then echo "Theme Music Found!"
 else
-	if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
-	else
+        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+		echo "Theme Music Extracting Complete"
+	 else
+		echo "Extracting Theme Music"
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
 fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
-	if [ -f "$HOME/tampo/bgm.zip" ]; then unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; else
+if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "BGM Found Music!"; else
+	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
+		echo "BGM Music Extraction Complete"
+	else
+		echo "Extracting BGM Music"
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-	unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"; fi
 fi
 setup
 rebootq
@@ -107,31 +114,37 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
 then echo "Theme Music Found!"
 else
-        if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+		echo "Theme Music Extracting Complete"
 	 else
+		echo "Extracting Theme Music"
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
 fi
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "BGM Found Music!"; else
-	if [ -f "$HOME/tampo/bgm.zip" ]; then unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
+	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
+		echo "BGM Music Extraction Complete"
 	else
+		echo "Extracting BGM Music"
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"; fi
 fi
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
-	if [ -f "$HOME/tampo/custombgm.zip" ]; then unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
+	if [ -f "$HOME/tampo/custombgm.zip" ]; then echo "Extracting CustomBGM Music"; unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
+		echo "CustomBGM Music Extracting Complete"
 	else
+		echo "Extracting CustomBGM Music"
 		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tampo/custombgm.zip
 		unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
-		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'; fi
+		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'; echo "CustomBGM Music Extraction Complete"; fi
 fi
 setup
 rebootq
 exit
 }
 prep_work() {
-##### Install needed packages
+echo "Installing Needed Packages"
 sudo apt-get update -y
 if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PYGAME_PKG; else
 	echo "Unable to install python-pygame, please update your system (\"sudo apt-get upgrade && sudo apt-get update\") and then try running this script again!"
@@ -145,7 +158,7 @@ if [ -a $HOME/scripts/bgm/start.sc ]; then
 	sudo rm $HOME/scripts/bgm/start.sc; fi
 currentuser=$(whoami) # Check user and then stop the script if root
 if [[ $currentuser == "root" ]]; then echo "DON'T RUN THIS SCRIPT AS ROOT! USE './TAMPO_Install.sh' !"; exit; fi
-##### Download the files needed and install the script + utilities
+echo "Downloading the files needed and installing the script + utilities"
 if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"; fi
 if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
@@ -159,7 +172,7 @@ git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retrop
 if [ ! -d  "$THEMES_DIR/pistolero" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
 cd $HOME/tampo
-#git checkout tags/tampo$ver
+git checkout tags/tampo$ver
 sudo chmod +x $HOME/tampo/runcommand-onstart.sh
 sudo chown $currentuser:$currentuser $HOME/tampo/runcommand-onstart.sh
 sudo chmod +x $HOME/tampo/exit-splash
@@ -197,9 +210,11 @@ sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
 if [ -f "$MUSIC_DIR/BGM.py" ]; then rm -f $MUSIC_DIR/BGM.py; fi
+echo "Prep Work All Done. Downloading Music"
 }
 setup() {
-##### Add menu options for BGM Overlay Controls
+echo "Music All Done. Final Setup Commencing"
+echo "Add menu options for BGM Overlay Controls"
 cp $HOME/tampo/tampo.png $MENU_DIR/icons/
 if [ -f "$MENU_DIR/tampo.sh" ]; then sudo rm -f $MENU_DIR/tampo.sh; fi
 if [ -f "$STMENU_DIR/tampo.sh" ]; then sudo rm -f $STMENU_DIR/tampo.sh; fi
@@ -228,7 +243,7 @@ else
 	cat $HOME/temp > $MENU_DIR/gamelist.xml
 	rm -f $HOME/temp
 fi
-##### Setting up Splash & Exit Screens
+echo "Setting up Splash & Exit Screens"
 cp "$HOME/tampo/BGM Folder Diabled.mp3" $INSTALL_DIR
 cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/reboot/
 cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/shutdown/

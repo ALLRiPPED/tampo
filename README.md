@@ -1,4 +1,4 @@
-## TAMPO: Theme And Music Plus Overlay v1.05
+## TAMPO: Theme And Music Plus Overlay v1.10
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
@@ -85,6 +85,8 @@ BGM.py Version 1.60 - Added one line install and control scripts by thepitster<b
 The Halloween theme, music, splash, and videoloading screens are from the build [32GB]-Halloween.Candy.RPI4.2gb.4gb-Scoony and DB Project<br>
 The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br>
 Diablos Arcade by the [Retro-Devils](https://github.com/Retro-Devils/Devils-Pi "Diablos Arcade")<br>
+Pistolero by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>
 [Dwayne Hurst](https://github.com/retrohursty69 "Dwayne Hurst")<br>
 Version 1.00 - thepitster<br>
 Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")<br>
+Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>Fixed quite a few script errors and tweaked the install scripts.<br>
