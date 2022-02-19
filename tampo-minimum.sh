@@ -1,6 +1,6 @@
 #!/bin/bash
 #Minimal TAMPO Script
-ver="v1.05"
+ver="v1.10"
 SCRIPT_LOC="/home/pi/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="/home/pi/RetroPie/roms/music"
@@ -25,22 +25,22 @@ stats_check
         choice=$(dialog --colors --backtitle "TAMPO $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            01 "Theme Settings" \
-            02 "Music Settings" \
-            03 "Overlay Settings" \
-            04 "Enable/Disable Exit Splash $exs" \
-            05 "Enable/Disable Videoloadingscreens $vls" \
-            06 "Set Videoloadingscreens Folder" \
-            07 "View TAMPO Disclamer" \
+            1 "Theme Settings" \
+            2 "Music Settings" \
+            3 "Overlay Settings" \
+            4 "Enable/Disable Exit Splash $exs" \
+            5 "Enable/Disable Videoloadingscreens $vls" \
+            6 "Set Videoloadingscreens Folder" \
+            7 "View TAMPO Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) themesettings  ;;
-            02) musicsettings  ;;
-            03) overlay_menu  ;;
-            04) exit_splash  ;;
-            05) video_screens  ;;
-            06) set_video_screens  ;;
-            07) disclaim  ;;
+            1) themesettings  ;;
+            2) musicsettings  ;;
+            3) overlay_menu  ;;
+            4) exit_splash  ;;
+            5) video_screens  ;;
+            6) set_video_screens  ;;
+            7) disclaim  ;;
             *) break  ;;
         esac
     done
@@ -52,18 +52,20 @@ stats_check
         choice=$(dialog --colors --backtitle "Theme Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            01 "Enable Halloween Theme" \
-            02 "Enable Christmas Theme" \
-			03 "Enable Retro-Devils" \
-            04 "Enable Stranger Things Theme" \
-            05 "Enable Carbonite Theme" \
+            1 "Enable Carbonite Theme" \
+            2 "Enable Christmas Theme" \
+            3 "Enable Halloween Theme" \
+            4 "Enable Retro-Devils" \
+            5 "Enable Pistolero Theme" \
+            6 "Enable Stranger Things Theme" \
            2>&1 > /dev/tty)
         case "$choice" in
-            01) enable_halloween ;;
-            02) enable_xmas ;;
-			03) enable_devils ;;
-            04) enable_stranger ;;
-            05) enable_carbonite ;;
+            1) enable_carbonite ;;
+            2) enable_xmas ;;
+            3) enable_halloween ;;
+            4) enable_devils ;;
+            5) enable_pistolero ;;
+            6) enable_stranger ;;
             *) break ;;
         esac
     done
@@ -75,18 +77,18 @@ stats_check
         choice=$(dialog --colors --backtitle "Music Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Music Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            01 "Enable/Disable Background Music $bgms" \
-            02 "Enable/Disable BGM On-Boot $bgmos" \
-            03 "Music Selection $ms" \
-            04 "Volume Control $vol" \
-            05 "Music Start Delay $msd" \
+            1 "Enable/Disable Background Music $bgms" \
+            2 "Enable/Disable BGM On-Boot $bgmos" \
+            3 "Music Selection $ms" \
+            4 "Volume Control $vol" \
+            5 "Music Start Delay $msd" \
            2>&1 > /dev/tty)
         case "$choice" in
-            01) enable_music  ;;
-            02) enable_musicos  ;;
-            03) music_select  ;;
-            04) set_bgm_volume  ;;
-            05) music_startdelay  ;;
+            1) enable_music  ;;
+            2) enable_musicos  ;;
+            3) music_select  ;;
+            4) set_bgm_volume  ;;
+            5) music_startdelay  ;;
             *) break  ;;
         esac
     done
@@ -98,23 +100,23 @@ local choice
         choice=$(dialog --colors --backtitle "Choose OverLay Settings  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Overlay Menu " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
-            01 "Enable/Disable Overlay $ovs" \
-            02 "Enable/Disable Overlay Fadeout $ovf" \
-            03 "Adjust Overlay Fadeout Time $oft" \
-            04 "Enable/Disable Overlay Rounded Corners $ocr" \
-            05 "Enable/Disable Overlay Line Separator $ons" \
-            06 "Vertical Position: $vpos" \
-            07 "Horizontal Position: $hpos" \
+            1 "Enable/Disable Overlay $ovs" \
+            2 "Enable/Disable Overlay Fadeout $ovf" \
+            3 "Adjust Overlay Fadeout Time $oft" \
+            4 "Enable/Disable Overlay Rounded Corners $ocr" \
+            5 "Enable/Disable Overlay Line Separator $ons" \
+            6 "Vertical Position: $vpos" \
+            7 "Horizontal Position: $hpos" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) overlay_enable  ;;
-            02) overlay_fade_out  ;;
-            03) overlay_fade_out_time  ;;
-            04) overlay_rounded_corners  ;;
-            05) overlay_replace_newline  ;;
-            06) overlay_v_pos  ;;
-            07) overlay_h_pos  ;;
-            *)  break ;;
+            1) overlay_enable  ;;
+            2) overlay_fade_out  ;;
+            3) overlay_fade_out_time  ;;
+            4) overlay_rounded_corners  ;;
+            5) overlay_replace_newline  ;;
+            6) overlay_v_pos  ;;
+            7) overlay_h_pos  ;;
+            *) break ;;
         esac
     done
 }
@@ -145,12 +147,12 @@ local choice
         choice=$(dialog --colors --backtitle "Select Your Music Choice  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
-            01 "Change Music Folder" \
-            02 "Disable Music Folder" \
+            1 "Change Music Folder" \
+            2 "Disable Music Folder" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) set_music_dir ;;
-            02) disable_music_dir ;;
+            1) set_music_dir ;;
+            2) disable_music_dir ;;
             *)  break ;;
         esac
     done
@@ -247,6 +249,31 @@ sleep 1
 killall emulationstation
 sleep 1
 if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Halloween Exit Splash already set!"
+else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
+sudo openvt -c 1 -s -f emulationstation 2>&1
+exit
+}
+enable_pistolero() {
+CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
+CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+NEW_THM="value=\"pistolero\""
+HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
+CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
+CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/PistoleroExit.mp4"'
+if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
+sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
+echo "Restarting EmulationStaion..."
+pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+sleep 1
+killall emulationstation
+sleep 1
+if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Pistolero Exit Splash already set!"
 else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
@@ -600,6 +627,8 @@ elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; t
 	ms="(\Z3Retro-Devils\Zn)"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then
 	ms="(\Z3StrangerThings\Zn)"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then
+	ms="(\Z3Pistolero\Zn)"
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 	export CUR_PLY

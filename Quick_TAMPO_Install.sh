@@ -4,7 +4,7 @@
 #############################################
 # Install Theme and Music Plus Overlay
 #############################################
-ver="v1.05"
+ver="v1.10"
 SCRIPT_LOC="$HOME/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="$HOME/RetroPie/roms/music"
@@ -13,6 +13,7 @@ MENU_DIR="$HOME/RetroPie/retropiemenu"
 STMENU_DIR="$HOME/RetroPie/retropiemenu/visualtools"
 AUTOSTART="/opt/retropie/configs/all/autostart.sh"
 RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
+RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
 PYGAME_PKG="python3-pygame"
 PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil"
 cd $HOME
@@ -26,8 +27,8 @@ infobox="${infobox}A Few subfolders have been created in the /home/pi/RetroPie/r
 infobox="${infobox}\"halloween\" (Halloween), \"xmas\" (Christmas), \"strangerthings\" (Stranger Things), and\n"
 infobox="${infobox}\"devilschromey\" (Retro-Devils). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
 infobox="${infobox}Also you have \"arcade\" (Arcade), \"bttf\" (Back To The Future), \"st\" (Suprememe Team), \"uvf\"\n"
-infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), and this last one \"custom\" (Custom) is for placing\n"
-infobox="${infobox}your own MP3 files into.\n"
+infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero),  and this last one\n"
+infobox="${infobox}\"custom\" (Custom) is for placing your own MP3 files into.\n"
 infobox="${infobox}Also included in this script is the ability to select between the different music folders you can disable\n"
 infobox="${infobox}them all or enable them, but only one at a time, the music will then automatically start playing.\n"
 infobox="${infobox}Launch a game, the music will stop. Upon exiting out of the game the music will begin playing again.\n"
@@ -38,7 +39,7 @@ infobox="${infobox}and separate the song title to a separate new lines.\n"
 infobox="${infobox}\n"
 infobox="${infobox}Overlay disappeared when you change resolutions? Set postion to Top-Left so you can see\n"
 infobox="${infobox}it then set it to desired postition, compatible with all resolutions.\n\n"
-infobox="${infobox}\n\n"
+infobox="${infobox}_______________________________________________________\n\n"
 dialog --backtitle "TAMPO Install Script $ver" \
 	--title "TAMPO Install Script $ver" \
 	--msgbox "${infobox}" 35 110
@@ -53,9 +54,9 @@ main_menu() {
             03 "Full Install All Music" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) install_tampo  ;;
-            02) install_tampo_1  ;;
-            03) install_tampo_2  ;;
+            01) install_tampo ;;
+            02) install_tampo_1 ;;
+            03) install_tampo_2 ;;
             *)  break ;;
         esac
     done
@@ -130,6 +131,7 @@ git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/c
 git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
 git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
 git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
+git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"
 cd $HOME/tampo
 git checkout tags/tampo$ver
 sudo chmod +x $HOME/tampo/runcommand-onstart.sh
@@ -162,9 +164,9 @@ cp -f "$HOME/tampo/BGM Folder Diabled.mp3" "$HOME/.tampo/BGM Folder Diabled.mp3"
 mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
 mkdir -p /opt/retropie/configs/all/emulationstation/scripts/shutdown
 sudo cp -f $HOME/tampo/GROBOLD.ttf /usr/share/fonts/truetype/
-mv -f /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.BACKUP
-mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.BACKUP
-mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onend.sh.BACKUP
+if [ -f $AUTOSTART ]; then mv -f /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.BACKUP; fi
+if [ -f $RUNONSTART ]; then mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.BACKUP; fi
+if [ -f $RUNONEND ]; then mv -f /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.BACKUP; fi
 sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
@@ -179,22 +181,19 @@ if [ -d "$STMENU_DIR" ]; then RP_MENU=$STMENU_DIR; else RP_MENU=$MENU_DIR; fi
 if [ "$minimum" = "1" ]; then
 	sudo chmod +x $HOME/tampo/tampo-minimum.sh
 	sudo chown $currentuser:$currentuser $HOME/tampo/tampo-minimum.sh
-	cp tampo-minimum.sh $RP_MENU/bgmcustomoptions.sh
+	cp tampo-minimum.sh $RP_MENU/tampo.sh
 else
-	sudo chmod +x $HOME/tampo/bgmcustomoptions.sh
-	sudo chown $currentuser:$currentuser $HOME/tampo/bgmcustomoptions.sh
-	cp bgmcustomoptions.sh $RP_MENU
+	sudo chmod +x $HOME/tampo/tampo.sh
+	sudo chown $currentuser:$currentuser $HOME/tampo/tampo.sh
+	cp tampo.sh $RP_MENU
 fi
-sudo chmod +x $HOME/tampo/tampo.sh
-sudo chown $currentuser:$currentuser $HOME/tampo/tampo.sh
-mv -f tampo.sh $RP_MENU
 if [ ! -s $MENU_DIR/gamelist.xml ]; then sudo rm -f $MENU_DIR/gamelist.xml; fi
 if [ ! -f "$MENU_DIR/gamelist.xml" ]; then cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml; fi
 if [ -d "$STMENU_DIR" ]; then
-CONTENT1="<game>\n<path>./visualtools/tampo.sh</path>\n<name>TAMPO</name>\n<desc>TAMPO stands for Theme and Music Plus Overlay. it's a script that changes between two Holiday and a Stranger Things themes, and their Background Music.</desc>\n<image>./icons/tampo.png</image>\n<releasedate>20211205T000251</releasedate>\n<developer>thepitster</developer>\n<publisher>thepitster</publisher>\n<genre>TAMPO Script</genre>\n</game>"
+CONTENT1="<game>\n<path>./visualtools/tampo.sh</path>\n<name>TAMPO</name>\n<desc>TAMPO stands for Theme and Music Plus Overlay. It's a script that changes between themes and their Background Music.</desc>\n<image>./icons/tampo.png</image>\n<releasedate>20211205T000251</releasedate>\n<developer>thepitster</developer>\n<publisher>thepitster</publisher>\n<genre>TAMPO Script</genre>\n</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 else
-CONTENT1="<game>\n<path>./tampo.sh</path>\n<name>TAMPO</name>\n<desc>TAMPO stands for Theme and Music Plus Overlay. it's a script that changes between two Holiday themes and their Background Music.</desc>\n<image>./icons/tampo.png</image>\n<releasedate>20211205T000251</releasedate>\n<developer>thepitster</developer>\n<publisher>thepitster</publisher>\n<genre>TAMPO Script</genre>\n</game>"
+CONTENT1="<game>\n<path>./tampo.sh</path>\n<name>TAMPO</name>\n<desc>TAMPO stands for Theme and Music Plus Overlay. It's a script that changes between themes and their Background Music.</desc>\n<image>./icons/tampo.png</image>\n<releasedate>20211205T000251</releasedate>\n<developer>thepitster</developer>\n<publisher>thepitster</publisher>\n<genre>TAMPO Script</genre>\n</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 fi
 if grep -q tampo.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"
@@ -209,7 +208,7 @@ cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts
 cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/shutdown/
 mv -f $HOME/tampo/autostart.sh /opt/retropie/configs/all/
 mv -f $HOME/tampo/runcommand-onstart.sh /opt/retropie/configs/all/
-touch -f /opt/retropie/configs/all/runcommand-onend.sh
+mv -f $HOME/tampo/runcommand-onend.sh /opt/retropie/configs/all/
 mv -f $HOME/tampo/splashscreens/CharlieBrown.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/XmasExit.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/Halloween.mp4 $HOME/RetroPie/splashscreens/
@@ -220,11 +219,13 @@ mv -f $HOME/tampo/splashscreens/RetroDevilReaperExit.mp4 $HOME/RetroPie/splashsc
 mv -f $HOME/tampo/splashscreens/RetroDevilReaper.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/StrangerExit.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/splashscreens/StrangerPi.mp4 $HOME/RetroPie/splashscreens/
+mv -f $HOME/tampo/splashscreens/ThanksForPlaying.mp4 $HOME/RetroPie/splashscreens/
 mv -f $HOME/tampo/videoloadingscreens/halloween $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/jarvis $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/strangerpi $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/xmas $HOME/RetroPie/videoloadingscreens/
 mv -f $HOME/tampo/videoloadingscreens/retrodevils $HOME/RetroPie/videoloadingscreens/
+mv -f $HOME/tampo/videoloadingscreens/pistolero $HOME/RetroPie/videoloadingscreens/
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -254,8 +255,8 @@ rebootq() {
             02 "Reboot Now" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) rebootl  ;;
-            02) rebootn  ;;
+            01) rebootl ;;
+            02) rebootn ;;
             *)  break ;;
         esac
     done

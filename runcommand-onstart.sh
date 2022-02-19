@@ -1,7 +1,7 @@
 #!/bin/sh
 ### Begin VideoLoading Screens Function
 enablevideolaunch="true"
-videoloadingscreens="/home/pi/RetroPie/videoloadingscreens"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
 if [[ $enablevideolaunch == "true" ]]; then
  # Extract file name from called ROM
  gname="$(basename "$3")"
@@ -13,11 +13,11 @@ if [[ $enablevideolaunch == "true" ]]; then
 
  # If condition to check filename with -f switch, f means regular file
  if [[ -f $ifgame ]]; then
-     vlc --no-loop --play-and-exit --no-video-title-show "$ifgame" > /dev/null 2>&1
+    omxplayer --vol 500 --amp 250 -b "$ifgame" > /dev/null 2>&1
  elif [[ -f $ifsystem ]]; then
-      vlc --no-loop --play-and-exit --no-video-title-show "$ifsystem" > /dev/null 2>&1
+    omxplayer --vol 500 --amp 250 -b "$ifsystem" > /dev/null 2>&1
  elif [[ -f $default ]]; then
-    vlc --no-loop --play-and-exit --no-video-title-show "$default" > /dev/null 2>&1
+    omxplayer --vol 500 --amp 250 -b "$default" > /dev/null 2>&1
  fi
 fi
 ### End VideoLoading Screens Function
