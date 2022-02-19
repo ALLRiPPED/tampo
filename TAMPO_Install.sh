@@ -12,6 +12,7 @@ MUSIC_DIR="$HOME/RetroPie/roms/music"
 MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
 STMENU_DIR="$HOME/RetroPie/retropiemenu/visualtools"
+ES_SETTINGS="/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 AUTOSTART="/opt/retropie/configs/all/autostart.sh"
 RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
 RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
@@ -256,10 +257,7 @@ cp -fr $HOME/tampo/videoloadingscreens/retrodevils $HOME/RetroPie/videoloadingsc
 cp -fr $HOME/tampo/videoloadingscreens/pistolero $HOME/RetroPie/videoloadingscreens/
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
-NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWN_LOD='"/home/pi/RetroPie/videoloadingscreens/jarvis"'
-if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" /opt/retropie/configs/all/emulationstation/es_settings.cfg; fi
-if [[ $NOR_LOD == $NEWN_LOD ]]; then echo "Videoloadingscreens Already Set"; else sed -i -E "s|videoloadingscreens=${NOR_LOD}|videoloadingscreens=${NEWN_LOD}|g" /opt/retropie/configs/all/runcommand-onstart.sh; fi
+if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" /etc/splashscreen.list
 cd $HOME
 ##### Explain stuff to the user
