@@ -90,11 +90,11 @@ else
 	else
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
 		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+fi
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; else
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
-	fi
+	unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
 fi
 setup
 rebootq
@@ -108,14 +108,16 @@ if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. St
 then echo "Theme Music Found!"
 else
         if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
-	else
+	 else
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
 		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+fi
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
 	else
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
 		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
+fi
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
 	if [ -f "$HOME/tampo/custombgm.zip" ]; then unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
@@ -123,8 +125,6 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tampo/custombgm.zip
 		unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'; fi
-        fi
-        fi
 fi
 setup
 rebootq
