@@ -193,9 +193,9 @@ cp -f "$HOME/tampo/BGM Folder Diabled.mp3" "$HOME/.tampo/BGM Folder Diabled.mp3"
 mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
 mkdir -p /opt/retropie/configs/all/emulationstation/scripts/shutdown
 sudo cp -f $HOME/tampo/GROBOLD.ttf /usr/share/fonts/truetype/
-if [ -f $AUTOSTART ]; then mv -f /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.BACKUP; fi
-if [ -f $RUNONSTART ]; then mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.BACKUP; fi
-if [ -f $RUNONEND ]; then mv -f /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.BACKUP; fi
+if [ -f $AUTOSTART ]; then mv -f /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO; fi
+if [ -f $RUNONSTART ]; then mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO; fi
+if [ -f $RUNONEND ]; then mv -f /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO; fi
 sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
