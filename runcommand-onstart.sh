@@ -13,11 +13,11 @@ if [[ $enablevideolaunch == "true" ]]; then
 
  # If condition to check filename with -f switch, f means regular file
  if [[ -f $ifgame ]]; then
-    omxplayer --vol 500 --amp 250 -b "$ifgame" > /dev/null 2>&1
+    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
  elif [[ -f $ifsystem ]]; then
-    omxplayer --vol 500 --amp 250 -b "$ifsystem" > /dev/null 2>&1
+    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
  elif [[ -f $default ]]; then
-    omxplayer --vol 500 --amp 250 -b "$default" > /dev/null 2>&1
+    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
  fi
 fi
 ### End VideoLoading Screens Function
