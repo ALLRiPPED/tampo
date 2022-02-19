@@ -7,6 +7,7 @@
 ver="v1.10"
 SCRIPT_LOC="$HOME/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
+THEMES_DIR="/opt/retropie/configs/all/emulationstation/themes"
 MUSIC_DIR="$HOME/RetroPie/roms/music"
 MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
@@ -66,10 +67,13 @@ minimum=1
 clear
 prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
-then echo "All Music Found!"
+then echo "Theme Music Found!"
 else
-	gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-	unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+	if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+	else
+		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+fi
 setup
 rebootq
 exit
@@ -79,13 +83,18 @@ minimum=0
 clear
 prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
-then echo "All Music Found!"
+then echo "Theme Music Found!"
 else
-	gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-	unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "Found Music!"; else
-	gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-	unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
+	if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+	else
+		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
+	if [ -f "$HOME/tampo/bgm.zip" ]; then unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; else
+		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
+	fi
+fi
 setup
 rebootq
 exit
@@ -95,17 +104,27 @@ minimum=0
 clear
 prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
-then echo "All Music Found!"
+then echo "Theme Music Found!"
 else
-	gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-	unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "Found Music!"; else
-	gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-	unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
-if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Found Music!"; else
-	gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tampo/custombgm.zip
-	unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
-	rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'; fi
+        if [ -f "$HOME/tampo/thememusic.zip" ]; then unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+	else
+		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; fi
+if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "BGM Found Music!"; else
+	if [ -f "$HOME/tampo/bgm.zip" ]; then unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
+	else
+		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; fi
+if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
+	if [ -f "$HOME/tampo/custombgm.zip" ]; then unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
+		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
+	else
+		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tampo/custombgm.zip
+		unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
+		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'; fi
+        fi
+        fi
+fi
 setup
 rebootq
 exit
@@ -129,13 +148,18 @@ if [ -d "$HOME/tampo" ]; then #delete folder if it is there
 currentuser=$(whoami) # Check user and then stop the script if root
 if [[ $currentuser == "root" ]]; then echo "DON'T RUN THIS SCRIPT AS ROOT! USE './TAMPO_Install.sh' !"; exit; fi
 ##### Download the files needed and install the script + utilities
-git clone https://github.com/ALLRiPPED/tampo.git
-git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
-git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
-git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
-git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
-git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
-git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"
+if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"; fi
+if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"; fi
+if [ ! -d  "$THEMES_DIR/carbonite" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"; fi
+if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"; fi
+if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"; fi
+if [ ! -d  "$THEMES_DIR/pistolero" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
 cd $HOME/tampo
 git checkout tags/tampo$ver
 sudo chmod +x $HOME/tampo/runcommand-onstart.sh
@@ -210,26 +234,26 @@ fi
 cp "$HOME/tampo/BGM Folder Diabled.mp3" $INSTALL_DIR
 cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/reboot/
 cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/shutdown/
-mv -f $HOME/tampo/autostart.sh /opt/retropie/configs/all/
-mv -f $HOME/tampo/runcommand-onstart.sh /opt/retropie/configs/all/
-mv -f $HOME/tampo/runcommand-onend.sh /opt/retropie/configs/all/
-mv -f $HOME/tampo/splashscreens/CharlieBrown.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/XmasExit.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/Halloween.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/HalloweenExit.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/JarvisExit.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/JarvisSplash.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/RetroDevilReaperExit.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/RetroDevilReaper.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/StrangerExit.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/StrangerPi.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/splashscreens/ThanksForPlaying.mp4 $HOME/RetroPie/splashscreens/
-mv -f $HOME/tampo/videoloadingscreens/halloween $HOME/RetroPie/videoloadingscreens/
-mv -f $HOME/tampo/videoloadingscreens/jarvis $HOME/RetroPie/videoloadingscreens/
-mv -f $HOME/tampo/videoloadingscreens/strangerpi $HOME/RetroPie/videoloadingscreens/
-mv -f $HOME/tampo/videoloadingscreens/xmas $HOME/RetroPie/videoloadingscreens/
-mv -f $HOME/tampo/videoloadingscreens/retrodevils $HOME/RetroPie/videoloadingscreens/
-mv -f $HOME/tampo/videoloadingscreens/pistolero $HOME/RetroPie/videoloadingscreens/
+cp -f $HOME/tampo/autostart.sh /opt/retropie/configs/all/
+cp -f $HOME/tampo/runcommand-onstart.sh /opt/retropie/configs/all/
+cp -f $HOME/tampo/runcommand-onend.sh /opt/retropie/configs/all/
+cp -f $HOME/tampo/splashscreens/CharlieBrown.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/XmasExit.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/Halloween.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/HalloweenExit.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/JarvisExit.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/JarvisSplash.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/RetroDevilReaperExit.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/RetroDevilReaper.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/StrangerExit.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/StrangerPi.mp4 $HOME/RetroPie/splashscreens/
+cp -f $HOME/tampo/splashscreens/ThanksForPlaying.mp4 $HOME/RetroPie/splashscreens/
+cp -fr $HOME/tampo/videoloadingscreens/halloween $HOME/RetroPie/videoloadingscreens/
+cp -fr $HOME/tampo/videoloadingscreens/jarvis $HOME/RetroPie/videoloadingscreens/
+cp -fr $HOME/tampo/videoloadingscreens/strangerpi $HOME/RetroPie/videoloadingscreens/
+cp -fr $HOME/tampo/videoloadingscreens/xmas $HOME/RetroPie/videoloadingscreens/
+cp -fr $HOME/tampo/videoloadingscreens/retrodevils $HOME/RetroPie/videoloadingscreens/
+cp -fr $HOME/tampo/videoloadingscreens/pistolero $HOME/RetroPie/videoloadingscreens/
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
