@@ -234,10 +234,10 @@ fi
 if [ ! -s $MENU_DIR/gamelist.xml ]; then sudo rm -f $MENU_DIR/gamelist.xml; fi
 if [ ! -f "$MENU_DIR/gamelist.xml" ]; then cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml; fi
 if [ -d "$STMENU_DIR" ]; then
-CONTENT1="<game>\n<path>./visualtools/tampo.sh</path>\n<name>TAMPO</name>\n<desc>TAMPO stands for Theme and Music Plus Overlay. It's a script that changes between themes and their Background Music.</desc>\n<image>./icons/tampo.png</image>\n<releasedate>20211205T000251</releasedate>\n<developer>thepitster</developer>\n<publisher>thepitster</publisher>\n<genre>TAMPO Script</genre>\n</game>"
+CONTENT1="\t<game>\n\t\t<path>./visualtools/tampo.sh</path>\n\t\t<name>TAMPO</name>\n\t\t<desc>TAMPO stands for Theme and Music Plus Overlay. It's a script that changes between themes and their Background Music.</desc>\n\t\t<image>./icons/tampo.png</image>\n\t\t<releasedate>20211205T000251</releasedate>\n\t\t<developer>thepitster</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMPO Script</genre>\n\t</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 else
-CONTENT1="<game>\n<path>./tampo.sh</path>\n<name>TAMPO</name>\n<desc>TAMPO stands for Theme and Music Plus Overlay. It's a script that changes between themes and their Background Music.</desc>\n<image>./icons/tampo.png</image>\n<releasedate>20211205T000251</releasedate>\n<developer>thepitster</developer>\n<publisher>thepitster</publisher>\n<genre>TAMPO Script</genre>\n</game>"
+CONTENT1="\t<game>\n\t\t<path>./tampo.sh</path>\n\t\t<name>TAMPO</name>\n\t\t<desc>TAMPO stands for Theme and Music Plus Overlay. It's a script that changes between themes and their Background Music.</desc>\n\t\t<image>./icons/tampo.png</image>\n\t\t<releasedate>20211205T000251</releasedate>\n\t\t<developer>thepitster</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMPO Script</genre>\n\t</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 fi
 if grep -q tampo.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"
