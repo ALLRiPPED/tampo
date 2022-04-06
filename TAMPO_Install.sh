@@ -19,7 +19,6 @@ RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
 PYGAME_PKG="python3-pygame"
 PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil"
 cd $HOME
-
 infobox=""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
@@ -92,20 +91,20 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ] && [ -f "$MUSIC_DIR/pistolero/Terminator 2 Theme.mp3" ]
 then echo "Theme Music Found!"
 else
-     if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
-     echo "Theme Music Extracting Complete"
-else
-	 echo "Extracting Theme Music"
+        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+		echo "Theme Music Extracting Complete"
+	 else
+		echo "Extracting Theme Music"
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
 		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
 fi
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
-	echo "BGM Music Extraction Complete"
-else
-	echo "Extracting BGM Music"
-	gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-	unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"; fi
+		echo "BGM Music Extraction Complete"
+	else
+		echo "Extracting BGM Music"
+		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"; fi
 fi
 setup
 rebootq
@@ -191,7 +190,6 @@ git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/c
 if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
 
-git clone --branch tampo$ver https://github.com/ALLRiPPED/tampo.git
 cd $HOME/tampo
 sudo chmod +x $HOME/tampo/BGM.py
 sudo chown $currentuser:$currentuser $HOME/tampo/BGM.py
