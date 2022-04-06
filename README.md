@@ -4,7 +4,7 @@ I ran into an issue with this being installed to a fresh vanilla img of RetroPie
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
 And no before you ask, the default theme, Carbon, does not count you have to install atleast a second theme then set it.<br>
 And then the es_settings.cfg will automatically be generated<br>
-plus it would not hurt to run `sudo apt update -y && sudo apy upgrade -y`
+plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y`
 ## One Line Install
      curl -sSL https://git.io/JDfjg | bash
 or
