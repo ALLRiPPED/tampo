@@ -1,6 +1,6 @@
 #!/bin/bash
 #TAMPO Script
-ver="v1.20"
+ver="v1.10"
 SCRIPT_LOC="/home/pi/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="/home/pi/RetroPie/roms/music"
@@ -793,7 +793,7 @@ DISCLAIMER="${DISCLAIMER}Launch a game, the music will stop. Upon exiting out of
 DISCLAIMER="${DISCLAIMER}This also lets you turn off certain options for BGM.py such as, Enable/Disable the Overlay, Fadeout effect,\n"
 DISCLAIMER="${DISCLAIMER}Rounded Corners on Overlays, an option to turn the dashes, or hyphens, with a space on both sides\n"
 DISCLAIMER="${DISCLAIMER}\" - \"\n"
-DISCLAIMER="${DISCLAIMER}and separate the song title to separate new line(s).\n"
+DISCLAIMER="${DISCLAIMER}and separate the song title to a separate new lines.\n"
 DISCLAIMER="${DISCLAIMER}\n"
 DISCLAIMER="${DISCLAIMER}Overlay disappeared when you change resolutions? Set postion to Top-Left so you can see it,\n"
 DISCLAIMER="${DISCLAIMER}then set it to desired postition, the overlay is compatible with all resolutions.\n"
