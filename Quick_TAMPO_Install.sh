@@ -1,5 +1,5 @@
 #!/bin/bash
-# Quick_TAMPO_Install.sh
+# TAMPO_Install.sh
 # Updated script by thepitster https://github.com/ALLRiPPED/ 
 #############################################
 # Install Theme and Music Plus Overlay
@@ -171,18 +171,78 @@ if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"; fi
 if [ ! -d  "$THEMES_DIR/pistolero" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
+
 cd $HOME/tampo
 git checkout tags/tampo$ver
-sudo chmod +x $HOME/tampo/runcommand-onstart.sh
-sudo chown $currentuser:$currentuser $HOME/tampo/runcommand-onstart.sh
-sudo chmod +x $HOME/tampo/exit-splash
-sudo chown $currentuser:$currentuser $HOME/tampo/exit-splash
 sudo chmod +x $HOME/tampo/BGM.py
 sudo chown $currentuser:$currentuser $HOME/tampo/BGM.py
-sudo chmod +x $HOME/tampo/autostart.sh
-sudo chown $currentuser:$currentuser $HOME/tampo/autostart.sh
+
+##### Will add Default missing EmulationStation settings
+if [ ! -f  "/opt/retropie/configs/all/emulationstation/es_settings.cfg" ]; then
+cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
+<?xml version="1.0"?>
+<bool name="BackgroundJoystickInput" value="false" />
+<bool name="CaptionsCompatibility" value="true" />
+<bool name="CollectionShowSystemInfo" value="true" />
+<bool name="DisableKidStartMenu" value="true" />
+<bool name="DrawFramerate" value="false" />
+<bool name="EnableSounds" value="true" />
+<bool name="ForceDisableFilters" value="false" />
+<bool name="LocalArt" value="false" />
+<bool name="MoveCarousel" value="true" />
+<bool name="ParseGamelistOnly" value="false" />
+<bool name="QuickSystemSelect" value="true" />
+<bool name="ScrapeRatings" value="true" />
+<bool name="ScreenSaverControls" value="true" />
+<bool name="ScreenSaverOmxPlayer" value="true" />
+<bool name="ScreenSaverVideoMute" value="false" />
+<bool name="ShowHelpPrompts" value="true" />
+<bool name="ShowHiddenFiles" value="false" />
+<bool name="SlideshowScreenSaverCustomImageSource" value="false" />
+<bool name="SlideshowScreenSaverRecurse" value="false" />
+<bool name="SlideshowScreenSaverStretch" value="false" />
+<bool name="SortAllSystems" value="false" />
+<bool name="StretchVideoOnScreenSaver" value="false" />
+<bool name="SystemSleepTimeHintDisplayed" value="false" />
+<bool name="UseCustomCollectionsSystem" value="true" />
+<bool name="VideoAudio" value="true" />
+<bool name="VideoOmxPlayer" value="false" />
+<int name="MaxVRAM" value="80" />
+<int name="ScraperResizeHeight" value="0" />
+<int name="ScraperResizeWidth" value="400" />
+<int name="ScreenSaverSwapImageTimeout" value="10000" />
+<int name="ScreenSaverSwapVideoTimeout" value="30000" />
+<int name="ScreenSaverTime" value="300000" />
+<int name="SubtitleSize" value="55" />
+<int name="SystemSleepTime" value="0" />
+<string name="AudioCard" value="default" />
+<string name="AudioDevice" value="HDMI" />
+<string name="CollectionSystemsAuto" value="" />
+<string name="CollectionSystemsCustom" value="" />
+<string name="GamelistViewStyle" value="automatic" />
+<string name="OMXAudioDev" value="both" />
+<string name="PowerSaverMode" value="disabled" />
+<string name="SaveGamelistsMode" value="on exit" />
+<string name="Scraper" value="TheGamesDB" />
+<string name="ScreenSaverBehavior" value="dim" />
+<string name="ScreenSaverGameInfo" value="never" />
+<string name="SlideshowScreenSaverBackgroundAudioFile" value="/home/pi/.emulationstation/slideshow/audio/slideshow_bg.wav" />
+<string name="SlideshowScreenSaverImageDir" value="/home/pi/.emulationstation/slideshow/image" />
+<string name="SlideshowScreenSaverImageFilter" value=".png,.jpg" />
+<string name="StartupSystem" value="" />
+<string name="SubtitleAlignment" value="left" />
+<string name="SubtitleFont" value="/usr/share/fonts/truetype/freefont/FreeSans.ttf" />
+<string name="SubtitleItalicFont" value="/usr/share/fonts/truetype/freefont/FreeSansOblique.ttf" />
+<string name="ThemeSet" value="pistolero" />
+<string name="TransitionStyle" value="fade" />
+<string name="UIMode" value="Full" />
+<string name="UIMode_passkey" value="uuddlrlrba" />
+EOF15293
+sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
+fi
+
 if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
-	if [ -f "/usr/local/bin//pngview" ]; then echo "Found pngview!"; else
+	if [ -f "/usr/local/bin/pngview" ]; then echo "Found pngview!"; else
 		sudo chmod +x pngview
 		sudo cp pngview /usr/local/bin/
 	fi
@@ -200,12 +260,7 @@ fi
 cd $HOME/tampo/
 cp -f "$HOME/tampo/BGM.py" "$HOME/.tampo/BGM.py"
 cp -f "$HOME/tampo/BGM Folder Diabled.mp3" "$HOME/.tampo/BGM Folder Diabled.mp3"
-mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
-mkdir -p /opt/retropie/configs/all/emulationstation/scripts/shutdown
 sudo cp -f $HOME/tampo/GROBOLD.ttf /usr/share/fonts/truetype/
-if [ -f $AUTOSTART ]; then mv -f /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO; fi
-if [ -f $RUNONSTART ]; then mv -f /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO; fi
-if [ -f $RUNONEND ]; then mv -f /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO; fi
 sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
@@ -245,28 +300,149 @@ else
 fi
 echo "Setting up Splash & Exit Screens"
 cp "$HOME/tampo/BGM Folder Diabled.mp3" $INSTALL_DIR
-cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/reboot/
-cp -f $HOME/tampo/exit-splash /opt/retropie/configs/all/emulationstation/scripts/shutdown/
-cp -f $HOME/tampo/autostart.sh /opt/retropie/configs/all/
-cp -f $HOME/tampo/runcommand-onstart.sh /opt/retropie/configs/all/
-cp -f $HOME/tampo/runcommand-onend.sh /opt/retropie/configs/all/
-cp -f $HOME/tampo/splashscreens/CharlieBrown.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/XmasExit.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/Halloween.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/HalloweenExit.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/JarvisExit.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/JarvisSplash.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/RetroDevilReaperExit.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/RetroDevilReaper.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/StrangerExit.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/StrangerPi.mp4 $HOME/RetroPie/splashscreens/
-cp -f $HOME/tampo/splashscreens/ThanksForPlaying.mp4 $HOME/RetroPie/splashscreens/
-cp -fr $HOME/tampo/videoloadingscreens/halloween $HOME/RetroPie/videoloadingscreens/
-cp -fr $HOME/tampo/videoloadingscreens/jarvis $HOME/RetroPie/videoloadingscreens/
-cp -fr $HOME/tampo/videoloadingscreens/strangerpi $HOME/RetroPie/videoloadingscreens/
-cp -fr $HOME/tampo/videoloadingscreens/xmas $HOME/RetroPie/videoloadingscreens/
-cp -fr $HOME/tampo/videoloadingscreens/retrodevils $HOME/RetroPie/videoloadingscreens/
-cp -fr $HOME/tampo/videoloadingscreens/pistolero $HOME/RetroPie/videoloadingscreens/
+
+
+if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/reboot" ]; then
+mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
+cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash"
+#! /bin/bash
+# /etc/init.d/start-sound
+
+sudo omxplayer --vol 500 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+EOF1293
+sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
+fi
+
+if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/shutdown" ]; then
+mkdir -p /opt/retropie/configs/all/emulationstation/scripts/shutdown
+cat <<\EOF18293 > "/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash"
+#! /bin/bash
+# /etc/init.d/start-sound
+
+sudo omxplayer --vol 500 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+EOF18293
+sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
+fi
+
+filefound11=`cat /opt/retropie/configs/all/autostart.sh |grep tampo |wc -l`
+if [[ ${filefound11} > 0 ]]; then
+
+   echo -e "$(tput setaf 2)Tampo Script Already Found in Outo Start But Will Now Enable! $(tput sgr0)"
+   echo "already in autostart.sh" > /tmp/exists
+   pkill -CONT mpg123
+
+else
+
+filefound88=`cat /opt/retropie/configs/all/autostart.sh |grep mpg123 |wc -l`
+if [[ ${filefound88} > 0 ]]; then
+
+   echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tampo Version! $(tput sgr0)"
+   sleep 3      
+   cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO
+   sed -i '/while pgrep omxplayer/d' /opt/retropie/configs/all/autostart.sh
+   sed -i '/(sleep 10; mpg123/d' /opt/retropie/configs/all/autostart.sh
+
+cat <<\EOF123 > "/tmp/templist"
+(nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
+EOF123
+   sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
+   sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash' /opt/retropie/configs/all/autostart.sh
+   echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+   sleep 3
+clear
+else
+   echo -e "$(tput setaf 2)Now Installing The Supreme Version of Mpg123! $(tput sgr0)"
+   sleep 3    
+   cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO
+cat <<\EOF123 > "/tmp/templist"
+(nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
+EOF123
+   sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
+   sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash' /opt/retropie/configs/all/autostart.sh
+   echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+   sleep 3
+clear
+
+fi
+fi
+
+                # Create both empty runcommand files if not already exist or make backup.
+                if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
+                echo '' > /opt/retropie/configs/all/runcommand-onstart.sh
+                sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
+                else
+                cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO 2>/dev/null         
+                fi
+
+                if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
+                echo '' > /opt/retropie/configs/all/runcommand-onend.sh
+                sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
+                else
+                cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO 2>/dev/null         
+                fi
+
+                                
+filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
+if [[ ${filefound2} > 1 ]]; then
+sed -i '/pkill -STOP mpg123/d' /opt/retropie/configs/all/runcommand-onstart.sh
+sed -i '/pkill -CONT mpg123/d' /opt/retropie/configs/all/runcommand-onend.sh
+fi
+
+
+ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep VideoLoading |wc -l`
+if [[ ${ifexist2} > 0 ]]; then
+  echo -e "$(tput setaf 2)Tampo Script Already Found In Runcommand But Will Now Enable! $(tput sgr0)"
+  echo "already in runcommand.sh" > /tmp/exists
+  pkill -CONT mpg123
+
+else
+
+cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO
+cat <<\EOF1234 > "/tmp/templist2"
+#!/bin/sh
+### Begin VideoLoading Screens Function
+enablevideolaunch="true"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
+if [[ $enablevideolaunch == "true" ]]; then
+ # Extract file name from called ROM
+ gname="$(basename "$3")"
+ # build path to file and remove extension from ROM to add mp4 extension
+ # $HOME variable will help users that are not stick to raspberry ;)
+ ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
+ ifsystem="$videoloadingscreens/$1.mp4"
+ default="$videoloadingscreens/default.mp4"
+
+ # If condition to check filename with -f switch, f means regular file
+ if [[ -f $ifgame ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
+ elif [[ -f $ifsystem ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
+ elif [[ -f $default ]]; then
+    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
+ fi
+fi
+### End VideoLoading Screens Function
+EOF1234
+sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+
+cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO
+cat <<\EOF12345 > "/tmp/templist3"
+#! /bin/bash
+# /etc/init.d/start-sound
+
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+EOF12345
+sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
+
+fi
+
+echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+sleep 3
+clear
+
+cp -f $HOME/tampo/splashscreens/*.mp4 $HOME/RetroPie/splashscreens/
+cp -fr $HOME/tampo/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/
+
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
