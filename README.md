@@ -16,7 +16,6 @@ then
 
      git clone https://github.com/SupremePi/tampo.git
      cd tampo
-     git checkout tags/tampov1.05
      sudo chmod +x Quick_TAMPO_Install.sh
     ./Quick_TAMPO_Install.sh
     
