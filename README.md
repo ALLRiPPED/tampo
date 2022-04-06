@@ -5,8 +5,12 @@ that this install script is looking for, so make sure you have atleast played on
 And no before you ask, the default theme, Carbon, does not count you have to install atleast a second theme then set it.<br>
 And then the es_settings.cfg will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apy upgrade -y`
+## One Line Install
+     curl -sSL https://git.io/JDfjg | bash
+or
 
-To manually install this script:
+	 wget -O - https://git.io/JDfjg | bash
+If you would like to manually install this script:
 
      sudo apt-get install omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil
 &
@@ -14,11 +18,10 @@ To manually install this script:
      pip install requests gdown
 then
 
-     git clone https://github.com/SupremePi/tampo.git
+     git clone https://github.com/ALLRiPPED/tampo.git
      cd tampo
      sudo chmod +x Quick_TAMPO_Install.sh
-    ./Quick_TAMPO_Install.sh
-    
+     ./Quick_TAMPO_Install.sh
 This will install all the files for the bgm script, themes, music, videoloading and splash screens!<br>
 ## More Information
 This is a script that is similar to Kio Diekin's theme and music script, but mine was made only by me and this is in no way the works he premeries in this video:<br>
