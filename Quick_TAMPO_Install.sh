@@ -4,7 +4,7 @@
 #############################################
 # Install Theme and Music Plus Overlay
 #############################################
-ver="v1.10"
+ver="v1.20"
 SCRIPT_LOC="$HOME/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 THEMES_DIR="/opt/retropie/configs/all/emulationstation/themes"
@@ -28,7 +28,7 @@ infobox="${infobox}This script will play MP3 & OGG files during menu navigation 
 infobox="${infobox}A Few subfolders have been created in the /home/pi/RetroPie/roms/music directory for\n"
 infobox="${infobox}\"halloween\" (Halloween), \"xmas\" (Christmas), \"strangerthings\" (Stranger Things), and\n"
 infobox="${infobox}\"devilschromey\" (Retro-Devils). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
-infobox="${infobox}Also you have \"arcade\" (Arcade), \"bttf\" (Back To The Future), \"st\" (Suprememe Team), \"uvf\"\n"
+infobox="${infobox}Also you have \"arcade\" (Arcade), \"st\" (Suprememe Team), \"uvf\"\n"
 infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero),  and this last one\n"
 infobox="${infobox}\"custom\" (Custom) is for placing your own MP3 files into.\n"
 infobox="${infobox}Also included in this script is the ability to select between the different music folders you can disable\n"
@@ -95,7 +95,7 @@ else
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
 		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
 fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "BGM Found Music!"; else
+if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
 	else
@@ -121,7 +121,7 @@ else
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
 		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
 fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ] && [ -f "$MUSIC_DIR/bttf/165 - 867-5309 Jenny.mp3" ]; then echo "BGM Found Music!"; else
+if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
 	else
@@ -171,8 +171,10 @@ if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"; fi
 if [ ! -d  "$THEMES_DIR/pistolero" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
+if [ ! -d  "$THEMES_DIR/pistolero" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
+
 cd $HOME/tampo
-git checkout tags/tampo$ver
 sudo chmod +x $HOME/tampo/runcommand-onstart.sh
 sudo chown $currentuser:$currentuser $HOME/tampo/runcommand-onstart.sh
 sudo chmod +x $HOME/tampo/exit-splash

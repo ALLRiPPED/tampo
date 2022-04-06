@@ -1,4 +1,4 @@
-## TAMPO: Theme And Music Plus Overlay v1.10
+## TAMPO: Theme And Music Plus Overlay v1.20
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
