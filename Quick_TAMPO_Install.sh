@@ -1,5 +1,5 @@
 #!/bin/bash
-# TAMPO_Install.sh
+# Quick_TAMPO_Install.sh
 # Updated script by thepitster https://github.com/ALLRiPPED/ 
 #############################################
 # Install Theme and Music Plus Overlay
