@@ -190,6 +190,7 @@ git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/c
 if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
 
+git clone --branch tampo$ver https://github.com/ALLRiPPED/tampo.git
 cd $HOME/tampo
 sudo chmod +x $HOME/tampo/BGM.py
 sudo chown $currentuser:$currentuser $HOME/tampo/BGM.py
