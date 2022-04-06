@@ -18,9 +18,8 @@ If you would like to manually install this script:
      pip install requests gdown
 then
 
-     git clone https://github.com/ALLRiPPED/tampo.git
+     git clone --branch tampov1.10 https://github.com/ALLRiPPED/tampo.git
      cd tampo
-     git checkout tags/tampov1.05
      sudo chmod +x Quick_TAMPO_Install.sh
      ./Quick_TAMPO_Install.sh
 This will install all the files for the bgm script, themes, music, videoloading and splash screens!<br>
