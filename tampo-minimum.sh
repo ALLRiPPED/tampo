@@ -1,5 +1,5 @@
 #!/bin/bash
-#TAMPO Script
+#Minimal TAMPO Script
 ver="v1.20"
 SCRIPT_LOC="/home/pi/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
