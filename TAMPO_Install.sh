@@ -119,8 +119,8 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
         then echo "Theme Music Found!"
 else
-     if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
-		 echo "Theme Music Extracting Complete"
+        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+		echo "Theme Music Extracting Complete"
 	 else
 		 echo "Extracting Theme Music"
 		 gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
@@ -145,7 +145,8 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 		echo "Extracting CustomBGM Music"
 		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tampo/custombgm.zip
 		unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
-		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'; echo "CustomBGM Music Extraction Complete"; fi
+		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
+		echo "CustomBGM Music Extraction Complete"; fi
 fi
 setup
 rebootq
@@ -356,14 +357,14 @@ if [[ ${filefound11} > 0 ]]; then
 
 else
 
-filefound88=`cat /opt/retropie/configs/all/autostart.sh |grep mpg123 |wc -l`
-if [[ ${filefound88} > 0 ]]; then
+	filefound88=`cat /opt/retropie/configs/all/autostart.sh |grep mpg123 |wc -l`
+	if [[ ${filefound88} > 0 ]]; then
 
-   echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tampo Version! $(tput sgr0)"
-   sleep 3      
-   cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO
-   sed -i '/while pgrep omxplayer/d' $AUTOSTART
-   sed -i '/(sleep 10; mpg123/d' $AUTOSTART
+		echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tampo Version! $(tput sgr0)"
+		sleep 3      
+		cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO
+		sed -i '/while pgrep omxplayer/d' $AUTOSTART
+		sed -i '/(sleep 10; mpg123/d' $AUTOSTART
 
 cat <<\EOF123 > "/tmp/templist"
 (nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
@@ -380,12 +381,12 @@ else
 cat <<\EOF123 > "/tmp/templist"
 (nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
 EOF123
-   sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
-   sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash' $AUTOSTART
-   echo -e "$(tput setaf 2)Done! $(tput sgr0)"
-   sleep 3
-clear
-fi
+		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
+		sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash' $AUTOSTART
+		echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+		sleep 3
+		clear
+	fi
 fi
 
                 # Create both empty runcommand files if not already exist or make backup.
