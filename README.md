@@ -79,6 +79,7 @@ RetroPie forum thread: https://retropie.org.uk/forum/topic/16458/modified-backgr
 BGM Overlay code added by madmodder123<br>
 BGM.py Version 1.01 - Changed song_title.png to write to RAM instead of the SD Card (Thanks zerojay!)<br>
 BGM.py Version 1.60 - Added one line install and control scripts by thepitster<br>
+TAMPO Version 1.20 - Total script rewrite thanks to a big help from [Supreme Team]https://github.com/SupremePi "Supreme Team")
 ### TAMPO Credits
 The Halloween theme, music, splash, and videoloading screens are from the build [32GB]-Halloween.Candy.RPI4.2gb.4gb-Scoony and DB Project<br>
 The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br>
@@ -88,3 +89,4 @@ Pistolero by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>
 Version 1.00 - thepitster<br>
 Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")<br>
 Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>Fixed quite a few script errors and tweaked the install scripts.<br>
+Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
