@@ -326,7 +326,7 @@ cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit
 #! /bin/bash
 # /etc/init.d/start-sound
 
-sudo omxplayer --vol 500 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF1293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
 fi
@@ -337,7 +337,7 @@ cat <<\EOF18293 > "/opt/retropie/configs/all/emulationstation/scripts/shutdown/e
 #! /bin/bash
 # /etc/init.d/start-sound
 
-sudo omxplayer --vol 500 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF18293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 fi
