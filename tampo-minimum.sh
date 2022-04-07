@@ -45,6 +45,7 @@ stats_check
         esac
     done
 }
+
 themesettings() {
 stats_check
     local choice
@@ -57,7 +58,8 @@ stats_check
             3 "Enable Halloween Theme" \
             4 "Enable Retro-Devils" \
             5 "Enable Pistolero Theme" \
-            6 "Enable Stranger Things Theme" \
+            6 "Enable Pleasure Paradise Theme" \
+            7 "Enable Stranger Things Theme" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) enable_carbonite ;;
@@ -65,11 +67,13 @@ stats_check
             3) enable_halloween ;;
             4) enable_devils ;;
             5) enable_pistolero ;;
-            6) enable_stranger ;;
+            6) enable_pleasure ;;
+            7) enable_stranger ;;
             *) break ;;
         esac
     done
 }
+
 musicsettings() {
 stats_check
     local choice
@@ -93,6 +97,7 @@ stats_check
         esac
     done
 }
+
 overlay_menu() {
 stats_check
 local choice
@@ -120,6 +125,7 @@ local choice
         esac
     done
 }
+
 set_bgm_volume() {
   local CUR_VOL
   CUR_VOL=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
@@ -140,6 +146,7 @@ perl -p -i -e 's/maxvolume = $ENV{CUR_VOL}/maxvolume = $ENV{NEW_VOL}/g' $SCRIPT_
 bgm_check
 stats_check
 }
+
 music_select() {
 stats_check
 local choice
@@ -157,6 +164,7 @@ local choice
         esac
     done
 }
+
 set_music_dir() {
 stats_check
   CUR_DIR=""
@@ -214,6 +222,7 @@ stats_check
 bgm_check
 stats_check
 }
+
 music_startdelay() {
 oldstartdelaytime=$(grep "startdelay = " "$SCRIPT_LOC"|awk '{print $3}')
 export oldstartdelaytime
@@ -228,6 +237,7 @@ fi
 bgm_check
 stats_check
 }
+
 enable_devils() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/RetroPie/roms/music/devils"'
@@ -253,6 +263,7 @@ else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
+
 enable_pistolero() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
@@ -278,6 +289,33 @@ else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
+
+enable_pleasure() {
+CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+NEW_PLY='"/home/pi/RetroPie/roms/music/pleasureparadise"'
+CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+NEW_THM="value=\"pleasureparadise\""
+HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
+CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
+CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/PleasureParadiseExit.mp4"'
+if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
+sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
+echo "Restarting EmulationStaion..."
+pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+sleep 1
+killall emulationstation
+sleep 1
+if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Pleasure Paradise Exit Splash already set!"
+else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
+sudo openvt -c 1 -s -f emulationstation 2>&1
+exit
+}
+
 enable_halloween() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/RetroPie/roms/music/halloween"'
@@ -303,6 +341,7 @@ else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
+
 enable_stranger() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/RetroPie/roms/music/strangerthings"'
@@ -328,6 +367,7 @@ else sed -i -E "s|${CUR_SEXS}|${NEWS_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
+
 enable_xmas() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/RetroPie/roms/music/xmas"'
@@ -353,6 +393,7 @@ else sed -i -E "s|${CUR_SEXS}|${NEWX_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
+
 enable_carbonite() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/.tampo"'
@@ -379,6 +420,7 @@ else sed -i -E "s|${CUR_SEXS}|${NEWD_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}
 sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
+
 enable_music() {
 if [ -f "$INSTALL_DIR"/DisableMusic ]; then
 	sudo rm -f "$INSTALL_DIR"/DisableMusic
@@ -391,6 +433,7 @@ fi
 sleep 1
 stats_check
 }
+
 enable_musicos() {
 if grep -q "#(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
 	sudo sed -i 's/\#(nohup python/(nohup python/g' $AUTOSTART
@@ -399,6 +442,7 @@ elif grep -q "(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
 fi
 stats_check
 }
+
 disable_music_dir() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
@@ -408,26 +452,35 @@ sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${DEF_DIR}|g" $SCRIPT_LOC
 bgm_check
 stats_check
 }
+
 exit_splash() {
 if [ -f "$SPL_DIR/HalloweenExitOff.mp4" ] && [ -f "$SPL_DIR/JarvisExitOff.mp4" ] && [ -f "$SPL_DIR/XmasExitOff.mp4" ] && [ -f "$SPL_DIR/StrangerExitOff.mp4" ]
 then
 	sudo mv -f $SPL_DIR/HalloweenExitOff.mp4 $SPL_DIR/HalloweenExit.mp4
 	sudo mv -f $SPL_DIR/JarvisExitOff.mp4 $SPL_DIR/JarvisExit.mp4
+	sudo mv -f $SPL_DIR/PisteleroExitOff.mp4 $SPL_DIR/PisteleroExit.mp4
+	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
+	sudo mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $SPL_DIR/RetroDevilReaperExit.mp4
 	sudo mv -f $SPL_DIR/StrangerExitOff.mp4 $SPL_DIR/StrangerExit.mp4
 	sudo mv -f $SPL_DIR/XmasExitOff.mp4 $SPL_DIR/XmasExit.mp4
 else
 	sudo mv -f $SPL_DIR/HalloweenExit.mp4 $SPL_DIR/HalloweenExitOff.mp4
 	sudo mv -f $SPL_DIR/JarvisExit.mp4 $SPL_DIR/JarvisExitOff.mp4
+	sudo mv -f $SPL_DIR/PisteleroExit.mp4 $SPL_DIR/PisteleroExitOff.mp4
+	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
+	sudo mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $SPL_DIR/RetroDevilReaperExitOff.mp4
 	sudo mv -f $SPL_DIR/StrangerExit.mp4 $SPL_DIR/StrangerExitOff.mp4
 	sudo mv -f $SPL_DIR/XmasExit.mp4 $SPL_DIR/XmasExitOff.mp4
 fi
 stats_check
 }
+
 video_screens() {
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then sed -i -E 's|enablevideolaunch="true"|enablevideolaunch="false"|g' $RUNONSTART
 else sed -i -E 's|enablevideolaunch="false"|enablevideolaunch="true"|g' $RUNONSTART; fi
 stats_check
 }
+
 set_video_screens() {
 stats_check
   CUR_LOD=""
@@ -485,6 +538,7 @@ stats_check
 bgm_check
 stats_check
 }
+
 overlay_enable() {
 if grep -q 'overlay_enable = True' "$SCRIPT_LOC"; then
 	sed -i -E 's/overlay_enable = True/overlay_enable = False/g' $SCRIPT_LOC
@@ -494,6 +548,7 @@ fi
 bgm_check
 stats_check
 }
+
 overlay_fade_out() {
 if grep -q 'overlay_fade_out = True' "$SCRIPT_LOC"; then
 	sed -i -E 's/overlay_fade_out = True/overlay_fade_out = False/g' $SCRIPT_LOC
@@ -503,6 +558,7 @@ fi
 bgm_check
 stats_check
 }
+
 overlay_fade_out_time() {
 oldfadeouttime=$(grep "overlay_fade_out_time = " "$SCRIPT_LOC"|awk '{print $3}')
 export oldfadeouttime
@@ -519,6 +575,7 @@ fi
 bgm_check
 stats_check
 }
+
 overlay_rounded_corners() {
 if grep -q 'overlay_rounded_corners = True' "$SCRIPT_LOC"; then
 	sed -i -E 's/overlay_rounded_corners = True/overlay_rounded_corners = False/g' $SCRIPT_LOC
@@ -528,6 +585,7 @@ fi
 bgm_check
 stats_check
 }
+
 overlay_replace_newline() {
 if grep -q 'overlay_replace_newline = True' "$SCRIPT_LOC"; then
 	sed -i -E 's/overlay_replace_newline = True/overlay_replace_newline = False/g' $SCRIPT_LOC
@@ -537,6 +595,7 @@ fi
 bgm_check
 stats_check
 }
+
 overlay_v_pos() {
 CUR_VPOS=$(grep "overlay_y_offset =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_VPOS
@@ -552,6 +611,7 @@ fi
 bgm_check
 stats_check
 }
+
 overlay_h_pos() {
 CUR_HPOS=$(grep "overlay_x_offset =" "${SCRIPT_LOC}"|awk '{print $3}')
 export CUR_HPOS
@@ -567,6 +627,7 @@ fi
 bgm_check
 stats_check
 }
+
 stats_check() {
 enable="(\Z2Enabled\Zn)"
 disable="(\Z1Disabled\Zn)"
@@ -629,6 +690,8 @@ elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT
 	ms="(\Z3StrangerThings\Zn)"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then
 	ms="(\Z3Pistolero\Zn)"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then
+	ms="(\Z3Pleasure Paradise\Zn)"
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 	export CUR_PLY
@@ -645,6 +708,10 @@ elif [[ $THEME == value=\"devilchromey\" ]]; then
 	ts="(\Z3Retro-Devils\Zn)"
 elif [[ $THEME == value=\"carbonite\" ]]; then
 	ts="(\Z3Carbonite\Zn)"
+elif [[ $THEME == value=\"pleasureparadise\" ]]; then
+	ts="(\Z3Pleasure Paradise\Zn)"
+elif [[ $THEME == value=\"pistolero\" ]]; then
+	ts="(\Z3Pistolero\Zn)"
 else
 	ts="(\Z3$(basename $THEME | tr -d '"')\Zn)"
 fi
@@ -675,6 +742,7 @@ elif [ "${height}" -le 599 ]; then
 	overlay_h_size=15
 fi
 }
+
 bgm_check() {
 if [ -f "$INSTALL_DIR"/DisableMusic ]; then
 	echo "Background Music Disabled!"
@@ -686,6 +754,7 @@ else
 fi
 sleep 1
 }
+
 disclaim() {
 DISCLAIMER=""
 DISCLAIMER="${DISCLAIMER}_______________________________________________________\n\n"
@@ -712,4 +781,5 @@ dialog --colors --backtitle "TAMPO Control Script $ver  BGM Status $bgms  Volume
 --title "DISCLAIMER" \
 --msgbox "${DISCLAIMER}" 35 110
 }
+
 main_menu
