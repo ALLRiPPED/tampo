@@ -19,6 +19,7 @@ RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
 PYGAME_PKG="python3-pygame"
 PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil"
 cd $HOME
+
 infobox=""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
@@ -29,7 +30,7 @@ infobox="${infobox}A Few subfolders have been created in the /home/pi/RetroPie/r
 infobox="${infobox}\"halloween\" (Halloween), \"xmas\" (Christmas), \"strangerthings\" (Stranger Things), and\n"
 infobox="${infobox}\"devilschromey\" (Retro-Devils). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
 infobox="${infobox}Also you have \"arcade\" (Arcade), \"st\" (Suprememe Team), \"uvf\"\n"
-infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero),  and this last one\n"
+infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero), and this last one\n"
 infobox="${infobox}\"custom\" (Custom) is for placing your own MP3 files into.\n"
 infobox="${infobox}Also included in this script is the ability to select between the different music folders you can disable\n"
 infobox="${infobox}them all or enable them, but only one at a time, the music will then automatically start playing.\n"

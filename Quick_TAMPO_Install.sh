@@ -30,7 +30,7 @@ infobox="${infobox}A Few subfolders have been created in the /home/pi/RetroPie/r
 infobox="${infobox}\"halloween\" (Halloween), \"xmas\" (Christmas), \"strangerthings\" (Stranger Things), and\n"
 infobox="${infobox}\"devilschromey\" (Retro-Devils). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
 infobox="${infobox}Also you have \"arcade\" (Arcade), \"st\" (Suprememe Team), \"uvf\"\n"
-infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero),  and this last one\n"
+infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero), and this last one\n"
 infobox="${infobox}\"custom\" (Custom) is for placing your own MP3 files into.\n"
 infobox="${infobox}Also included in this script is the ability to select between the different music folders you can disable\n"
 infobox="${infobox}them all or enable them, but only one at a time, the music will then automatically start playing.\n"
@@ -119,8 +119,8 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
         then echo "Theme Music Found!"
 else
-        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
-		echo "Theme Music Extracting Complete"
+     if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+		 echo "Theme Music Extracting Complete"
 	 else
 		 echo "Extracting Theme Music"
 		 gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
