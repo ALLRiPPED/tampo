@@ -28,14 +28,14 @@ stats_check
             1 "Theme Settings" \
             2 "Music Settings" \
             3 "Overlay Settings" \
-	    4 "Loading meida Settings" \
+            4 "Loading meida Settings" \
             5 "View TAMPO Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) themesettings  ;;
             2) musicsettings  ;;
             3) overlay_menu  ;;
-	    4) loading_media  ;;
+            4) loading_media  ;;
             5) disclaim  ;;
             *) break  ;;
         esac
@@ -500,7 +500,7 @@ if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Retro-Devils Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -526,7 +526,7 @@ if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else se
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -552,7 +552,7 @@ if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!";
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -578,7 +578,7 @@ if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else se
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Halloween.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -604,7 +604,7 @@ if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else 
 if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/StrangerPi.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -630,7 +630,7 @@ if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else se
 if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -657,7 +657,7 @@ if [[ $NOR_LOD == $NEWN_LOD ]]; then echo "Videoloadingscreens already set!"; el
 if [ -f /home/pi/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
 else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
 echo "Restarting EmulationStaion..."
-pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 sleep 1
 killall emulationstation
@@ -674,7 +674,7 @@ if [ -f "$INSTALL_DIR"/DisableMusic ]; then
 	(nohup python $SCRIPT_LOC > /dev/null 2>&1) &
 else
 	touch "$INSTALL_DIR"/DisableMusic
-	pgrep -f "python "$SCRIPT_LOC|xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 fi
 sleep 1
@@ -994,7 +994,7 @@ bgm_check() {
 if [ -f "$INSTALL_DIR"/DisableMusic ]; then
 	echo "Background Music Disabled!"
 else
-	pgrep -f "python "$SCRIPT_LOC |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
 	sleep 1
 	(nohup python $SCRIPT_LOC > /dev/null 2>&1) &
