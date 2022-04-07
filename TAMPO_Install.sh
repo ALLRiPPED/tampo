@@ -21,7 +21,7 @@ PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0
 cd $HOME
 
 infobox=""
-infobox="${infobox}_______________________________________________________\n\n"
+infobox="${infobox}__________________________________________________________________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}TAMPO Install Script\n\n"
 infobox="${infobox}The background music python and control scripts have been installed on this system.\n"
@@ -30,7 +30,7 @@ infobox="${infobox}A Few subfolders have been created in the /home/pi/RetroPie/r
 infobox="${infobox}\"halloween\" (Halloween), \"xmas\" (Christmas), \"strangerthings\" (Stranger Things), and\n"
 infobox="${infobox}\"devilschromey\" (Retro-Devils). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
 infobox="${infobox}Also you have \"arcade\" (Arcade), \"st\" (Suprememe Team), \"uvf\"\n"
-infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero), and this last one\n"
+infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero),  and this last one\n"
 infobox="${infobox}\"custom\" (Custom) is for placing your own MP3 files into.\n"
 infobox="${infobox}Also included in this script is the ability to select between the different music folders you can disable\n"
 infobox="${infobox}them all or enable them, but only one at a time, the music will then automatically start playing.\n"
@@ -42,7 +42,7 @@ infobox="${infobox}and separate the song title to a separate new lines.\n"
 infobox="${infobox}\n"
 infobox="${infobox}Overlay disappeared when you change resolutions? Set postion to Top-Left so you can see\n"
 infobox="${infobox}it then set it to desired postition, compatible with all resolutions.\n\n"
-infobox="${infobox}_______________________________________________________\n\n"
+infobox="${infobox}__________________________________________________________________________________________________________\n\n"
 dialog --backtitle "TAMPO Install Script $ver" \
 	--title "TAMPO Install Script $ver" \
 	--msgbox "${infobox}" 35 110
