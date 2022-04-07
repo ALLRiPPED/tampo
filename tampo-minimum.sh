@@ -28,7 +28,7 @@ stats_check
             1 "Theme Settings" \
             2 "Music Settings" \
             3 "Overlay Settings" \
-	        4 "Loading meida Settings" \
+	    4 "Loading meida Settings" \
             5 "View TAMPO Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
