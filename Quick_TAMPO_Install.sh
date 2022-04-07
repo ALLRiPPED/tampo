@@ -21,7 +21,7 @@ PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0
 cd $HOME
 
 infobox=""
-infobox="${infobox}_________________________________________________________________________________________________________\n\n"
+infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}TAMPO Install Script\n\n"
 infobox="${infobox}The background music python and control scripts have been installed on this system.\n"
@@ -42,7 +42,7 @@ infobox="${infobox}and separate the song title to a separate new lines.\n"
 infobox="${infobox}\n"
 infobox="${infobox}Overlay disappeared when you change resolutions? Set postion to Top-Left so you can see\n"
 infobox="${infobox}it then set it to desired postition, compatible with all resolutions.\n\n"
-infobox="${infobox}_________________________________________________________________________________________________________\n\n"
+infobox="${infobox}_______________________________________________________\n\n"
 dialog --backtitle "TAMPO Install Script $ver" \
 	--title "TAMPO Install Script $ver" \
 	--msgbox "${infobox}" 35 110
