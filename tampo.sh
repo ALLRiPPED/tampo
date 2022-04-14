@@ -70,12 +70,12 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Enable/Disable Videoloadingscreens $vls" \
             2 "Set Videoloadingscreens Folder" \
-            3 "Enable/Disable Exit Splash $exs" \
+			3 "Enable/Disable Exit Splash $exs" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) video_screens  ;;
             2) set_video_screens  ;;
-            3) exit_splash  ;;
+			3) exit_splash  ;;
             *) break ;;
         esac
     done
@@ -90,12 +90,12 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Pick Installed launching screens" \
             2 "Remove Launching Screens" \
-            3 "Download Launching Screens" \
+			3 "Download Launching Screens" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) install_screens  ;;
             2) remove_screens  ;;
-            3) download_screens  ;;
+			3) download_screens  ;;
             *) break ;;
         esac
     done
