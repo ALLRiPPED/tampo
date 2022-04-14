@@ -19,7 +19,6 @@ RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
 PYGAME_PKG="python3-pygame"
 PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil"
 cd $HOME
-
 infobox=""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
@@ -43,9 +42,7 @@ infobox="${infobox}\n"
 infobox="${infobox}Overlay disappeared when you change resolutions? Set postion to Top-Left so you can see\n"
 infobox="${infobox}it then set it to desired postition, compatible with all resolutions.\n\n"
 infobox="${infobox}_______________________________________________________\n\n"
-dialog --backtitle "TAMPO Install Script $ver" \
-	--title "TAMPO Install Script $ver" \
-	--msgbox "${infobox}" 35 110
+dialog --backtitle "TAMPO Install Script $ver" --title "TAMPO Install Script $ver" --msgbox "${infobox}" 35 110
 
 main_menu() {
     local choice
@@ -92,12 +89,13 @@ prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ] && [ -f "$MUSIC_DIR/pistolero/Terminator 2 Theme.mp3" ]
 then echo "Theme Music Found!"
 else
-        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+	if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
 		echo "Theme Music Extracting Complete"
-	 else
+	else
 		echo "Extracting Theme Music"
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"
+	fi
 fi
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
@@ -105,7 +103,8 @@ if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	else
 		echo "Extracting BGM Music"
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"; fi
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"
+	fi
 fi
 setup
 rebootq
@@ -117,26 +116,26 @@ minimum=0
 clear
 prep_work
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
-        then echo "Theme Music Found!"
+then echo "Theme Music Found!"
 else
-        if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
+	if [ -f "$HOME/tampo/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie
 		echo "Theme Music Extracting Complete"
-	 else
-		 echo "Extracting Theme Music"
-		 gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
-		 unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
+	else
+		echo "Extracting Theme Music"
+		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tampo/thememusic.zip
+		unzip -uq $HOME/tampo/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"
+	fi
 
 fi
-
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tampo/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
 	else
 		echo "Extracting BGM Music"
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tampo/bgm.zip
-		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"; fi
+		unzip -uq $HOME/tampo/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"
+	fi
 fi
-
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
 	if [ -f "$HOME/tampo/custombgm.zip" ]; then echo "Extracting CustomBGM Music"; unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
@@ -146,7 +145,8 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tampo/custombgm.zip
 		unzip -uq $HOME/tampo/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
-		echo "CustomBGM Music Extraction Complete"; fi
+		echo "CustomBGM Music Extraction Complete"
+	fi
 fi
 setup
 rebootq
@@ -158,17 +158,51 @@ echo "Installing Needed Packages"
 sudo apt-get update -y
 if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PYGAME_PKG; else
 	echo "Unable to install python-pygame, please update your system (\"sudo apt-get upgrade && sudo apt-get update\") and then try running this script again!"
-	exit; fi
+	exit
+fi
 sudo apt-get install -y $PSUTIL_PKG # to generate overlays
 sudo pip install requests gdown
 cd ~
 
 ##### Disable ODROID BGM script if it exists
-if [ -a $HOME/scripts/bgm/start.sc ]; then
-	pkill -STOP mpg123
-	sudo rm $HOME/scripts/bgm/start.sc; 
+if [ -a $HOME/scripts/bgm/start.sc ]; then pkill -STOP mpg123; sudo rm $HOME/scripts/bgm/start.sc; fi
+
+##### Code by RapidEdwin08 from IMP https://github.com/RapidEdwin08/imp.git
+##### Disable 0ther BGMs Indiscriminately
+sudo pkill -STOP mpg123 > /dev/null 2>&1
+sudo pkill -KILL mpg123 > /dev/null 2>&1
+##### Disable Livewire
+if [ ! -f ~/.DisableMusic ]; then touch ~/.DisableMusic; fi
+if [ -f /home/pi/RetroPie/retropiemenu/bgm-mute.sh ]; then mv /home/pi/RetroPie/retropiemenu/bgm-mute.sh /home/pi/RetroPie/retropiemenu/bgm-mute.sh.TAMPO; fi
+##### Disable BGM Naprosnia
+sudo pkill -STOP audacious > /dev/null 2>&1
+sudo pkill -KILL audacious > /dev/null 2>&1
+if [ -f ~/RetroPie-BGM-Player/bgm_system.sh ]; then bash ~/RetroPie-BGM-Player/bgm_system.sh -setsetting bgm_toggle 0; fi
+if [ -f ~/RetroPie/retropiemenu/RetroPie-BGM-Player.sh ]; then mv ~/RetroPie/retropiemenu/RetroPie-BGM-Player ~/RetroPie/retropiemenu/RetroPie-BGM-Player.sh.TAMPO 2>/dev/null; fi
+##### Disable BGM Rydra
+sudo systemctl stop bgm > /dev/null 2>&1
+sudo systemctl disable bgm > /dev/null 2>&1
+##### Disable BGM 0fficialPhilcomm
+sudo systemctl stop retropie_music > /dev/null 2>&1
+sudo systemctl disable retropie_music > /dev/null 2>&1
+##### Final daemon-reload after Disable 0ther BGMs
+sudo systemctl daemon-reload > /dev/null 2>&1
+
+# Create both empty runcommand files if not already exist or make backup.
+if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
+	echo '' > /opt/retropie/configs/all/runcommand-onstart.sh
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
+else
+	cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO 2>/dev/null         
 fi
 
+if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
+	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
+		sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
+else
+	cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO 2>/dev/null         
+fi
+# Getting Themes
 currentuser=$(whoami) # Check user and then stop the script if root
 if [[ $currentuser == "root" ]]; then echo "DON'T RUN THIS SCRIPT AS ROOT! USE './TAMPO_Install.sh' !"; exit; fi
 echo "Downloading the files needed and installing the script + utilities"
@@ -187,9 +221,31 @@ git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/c
 if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
 
-cd $HOME/tampo
-sudo chmod +x $HOME/tampo/BGM.py
-sudo chown $currentuser:$currentuser $HOME/tampo/BGM.py
+if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
+	if [ -f "/usr/local/bin/pngview" ]; then echo "Found pngview!"; else
+		sudo chmod +x ~/tampo/pngview
+		sudo cp ~/tampo/pngview /usr/local/bin/
+	fi
+	if [ -f "$HOME/.tampo/BGM.py" ]; then echo "Found BGM.py"
+	else
+		mkdir $HOME/.tampo
+	fi
+elif [[ $currentuser == "pigaming" ]]; then
+	sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev # Install ODROID stuff
+	git clone https://github.com/AreaScout/Gaming-Kit-Tools.git
+	cd $HOME/tampo/Gaming-Kit-Tools
+	make
+	sudo make install
+fi
+
+cd $HOME/tampo/
+cp -f "$HOME/tampo/BGM.py" "$HOME/.tampo/BGM.py"
+cp -f "$HOME/tampo/BGM Folder Diabled.mp3" "$HOME/.tampo/BGM Folder Diabled.mp3"
+sudo cp -f $HOME/tampo/GROBOLD.ttf /usr/share/fonts/truetype/
+sleep 1
+if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
+if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
+if [ -f "$MUSIC_DIR/BGM.py" ]; then rm -f $MUSIC_DIR/BGM.py; fi
 
 ##### Will add Default missing EmulationStation settings
 if [ ! -f  "/opt/retropie/configs/all/emulationstation/es_settings.cfg" ]; then
@@ -255,30 +311,6 @@ EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 fi
 
-if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
-	if [ -f "/usr/local/bin/pngview" ]; then echo "Found pngview!"; else
-		sudo chmod +x pngview
-		sudo cp pngview /usr/local/bin/
-	fi
-	if [ -f "$HOME/.tampo/BGM.py" ]; then echo "Found BGM.py"
-	else
-		mkdir $HOME/.tampo
-	fi
-elif [[ $currentuser == "pigaming" ]]; then
-	sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev # Install ODROID stuff
-	git clone https://github.com/AreaScout/Gaming-Kit-Tools.git
-	cd $HOME/tampo/Gaming-Kit-Tools
-	make
-	sudo make install
-fi
-cd $HOME/tampo/
-cp -f "$HOME/tampo/BGM.py" "$HOME/.tampo/BGM.py"
-cp -f "$HOME/tampo/BGM Folder Diabled.mp3" "$HOME/.tampo/BGM Folder Diabled.mp3"
-sudo cp -f $HOME/tampo/GROBOLD.ttf /usr/share/fonts/truetype/
-sleep 1
-if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
-if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
-if [ -f "$MUSIC_DIR/BGM.py" ]; then rm -f $MUSIC_DIR/BGM.py; fi
 echo "Prep Work All Done. Downloading Music"
 }
 
@@ -310,12 +342,12 @@ C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 fi
 if grep -q tampo.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"
 else
-	sed "/<\/gameList>/ s/.*/${C1}\n&/" $MENU_DIR/gamelist.xml > $HOME/temp
-	cat $HOME/temp > $MENU_DIR/gamelist.xml
-	rm -f $HOME/temp
+	sed "/<\/gameList>/ s/.*/${C1}\n&/" $MENU_DIR/gamelist.xml > /tmp/temp.xml
+	cat /tmp/temp.xml > $MENU_DIR/gamelist.xml
+	rm -f /tmp/temp.xml
 fi
 
-echo "Setting up Splash & Exit Screens"
+echo "Setting up Splash, Exit, and Game Launching Screens"
 cp "$HOME/tampo/BGM Folder Diabled.mp3" $INSTALL_DIR
 cp -f $HOME/tampo/splashscreens/*.mp4 $HOME/RetroPie/splashscreens/
 cp -fr $HOME/tampo/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/
@@ -326,7 +358,7 @@ cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit
 #! /bin/bash
 # /etc/init.d/start-sound
 
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF1293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
 fi
@@ -337,7 +369,7 @@ cat <<\EOF18293 > "/opt/retropie/configs/all/emulationstation/scripts/shutdown/e
 #! /bin/bash
 # /etc/init.d/start-sound
 
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF18293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 fi
@@ -345,9 +377,9 @@ fi
 filefound11=`cat /opt/retropie/configs/all/autostart.sh |grep tampo |wc -l`
 if [[ ${filefound11} > 0 ]]; then
 
-   echo -e "$(tput setaf 2)Tampo Script Already Found in Outo Start But Will Now Enable! $(tput sgr0)"
+   echo -e "$(tput setaf 2)Tampo Script Already Found in Auto Start But Will Now Enable! $(tput sgr0)"
    echo "already in autostart.sh" > /tmp/exists
-   pkill -CONT mpg123
+   (nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
 
 else
 
@@ -357,97 +389,60 @@ else
 		echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tampo Version! $(tput sgr0)"
 		sleep 3      
 		cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO
-		sed -i '/while pgrep omxplayer/d' $AUTOSTART
-		sed -i '/(sleep 10; mpg123/d' $AUTOSTART
+		sed -i '/^while pgrep omxplayer/d' $AUTOSTART
+		sed -i '/^#while pgrep omxplayer/d' $AUTOSTART
+		sed -i '/^(sleep 10; mpg123/d' $AUTOSTART
+		sed -i '/^#(sleep 10; mpg123/d' $AUTOSTART
 
 cat <<\EOF123 > "/tmp/templist"
 (nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
 EOF123
    sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
-   sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash' $AUTOSTART
+   sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash\npgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
    sleep 3
    clear
 else
-   echo -e "$(tput setaf 2)Now Installing The Supreme Version of Mpg123! $(tput sgr0)"
+   echo -e "$(tput setaf 2)Now Installing The Supreme Version of TAMPO! $(tput sgr0)"
    sleep 3    
    cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.TAMPO
 cat <<\EOF123 > "/tmp/templist"
 (nohup python /home/pi/.tampo/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
-		sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash' $AUTOSTART
+		sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash\npgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
+
 		echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 		sleep 3
 		clear
 	fi
 fi
-
-                # Create both empty runcommand files if not already exist or make backup.
-                if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
-                echo '' > /opt/retropie/configs/all/runcommand-onstart.sh
-                sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
-                else
-                cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO 2>/dev/null         
-                fi
-
-                if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
-                echo '' > /opt/retropie/configs/all/runcommand-onend.sh
-                sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
-                else
-                cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO 2>/dev/null         
-                fi
-
                                 
 filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
-if [[ ${filefound2} > 1 ]]; then
+if [[ ${filefound2} > 0 ]]; then
 sed -i '/pkill -STOP mpg123/d' $RUNONSTART
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
 fi
 
 
-ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep VideoLoading |wc -l`
+ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
   echo -e "$(tput setaf 2)Tampo Script Already Found In Runcommand But Will Now Enable! $(tput sgr0)"
   echo "already in runcommand.sh" > /tmp/exists
-  pkill -CONT mpg123
 
 else
 
 cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO
-cat <<\EOF1234 > "/tmp/templist2"
-#!/bin/sh
-### Begin VideoLoading Screens Function
-enablevideolaunch="true"
-videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
-if [[ $enablevideolaunch == "true" ]]; then
- # Extract file name from called ROM
- gname="$(basename "$3")"
- # build path to file and remove extension from ROM to add mp4 extension
- # $HOME variable will help users that are not stick to raspberry ;)
- ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
- ifsystem="$videoloadingscreens/$1.mp4"
- default="$videoloadingscreens/default.mp4"
 
- # If condition to check filename with -f switch, f means regular file
- if [[ -f $ifgame ]]; then
-    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
- elif [[ -f $ifsystem ]]; then
-    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
- elif [[ -f $default ]]; then
-    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
- fi
-fi
-### End VideoLoading Screens Function
-EOF1234
-sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
+sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
+sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 
 cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO
+sed -i '/pkill -STOP mpg123/d' $RUNONSTART
+sed -i '/pkill -CONT mpg123/d' $RUNONEND
 cat <<\EOF12345 > "/tmp/templist3"
-#! /bin/bash
-# /etc/init.d/start-sound
-
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 EOF12345
 sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 fi
@@ -455,7 +450,6 @@ fi
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 sleep 3
 clear
-
 
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
@@ -471,7 +465,7 @@ ending="${ending}BGM has also been set up to run automatically when the device b
 ending="${ending}Thanks for trying out TAMPO\n\n"
 dialog --backtitle "TAMPO Install Script $ver" \
 	--title "TAMPO Install Script $ver" \
-	--msgbox "${infobox}" 35 110
+	--msgbox "${ending}" 35 110
 }
 
 rebootq() {
@@ -500,4 +494,5 @@ rebootn() {
 	sleep 1
 	sudo reboot
 }
+
 main_menu

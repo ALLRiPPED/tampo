@@ -28,7 +28,7 @@ stats_check
             1 "Theme Settings" \
             2 "Music Settings" \
             3 "Overlay Settings" \
-	        4 "Loading meida Settings" \
+            4 "Loading meida Settings" \
             5 "View TAMPO Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
@@ -504,8 +504,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"devilchromey\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/retrodevils"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWH_EXS='"/home/pi/RetroPie/splashscreens/RetroDevilReaperExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Retro-Devils Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -530,8 +530,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pistolero\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWH_EXS='"/home/pi/RetroPie/splashscreens/PistoleroExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -556,8 +556,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pleasureparadise\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWH_EXS='"/home/pi/RetroPie/splashscreens/PleasureParadiseExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -582,8 +582,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"halloweenspecial\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/halloween"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWH_EXS='"/home/pi/RetroPie/splashscreens/HalloweenExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -608,8 +608,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"strangerstuff\""
 STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWS_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerpi"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWS_EXS='"/home/pi/RetroPie/splashscreens/StrangerExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -634,8 +634,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"merryxmas\""
 XMA_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/xmas"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWX_EXS='"/home/pi/RetroPie/splashscreens/XmasExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -660,8 +660,8 @@ CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEWN_LOD='"/home/pi/RetroPie/videoloadingscreens/jarvis"'
-CUR_SEXS=$(grep "sudo omxplayer" "$EXITSPLS"|awk '{print $8}')
-CUR_REXS=$(grep "sudo omxplayer" "$EXITSPLR"|awk '{print $8}')
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
 NEWD_EXS="/home/pi/RetroPie/splashscreens/JarvisExit.mp4"
 if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [ $CUR_PLY == $NEW_PLY ]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
