@@ -12,7 +12,7 @@ or
 	 wget -O - https://git.io/JDfjg | bash
 If you would like to manually install this script:
 
-     sudo apt-get install omxplayer python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil
+     sudo apt-get install omxplayer python3-pygame python-pygame mpg123 imagemagick python-urllib3 libpng12-0 fbi python-pip python3-pip python3-psutil
 &
 
      pip install requests gdown
