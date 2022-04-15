@@ -203,7 +203,7 @@ fi
 
 if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
-		sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 else
 	cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO 2>/dev/null         
 fi
@@ -354,9 +354,19 @@ fi
 
 echo "Setting up Splash, Exit, and Game Launching Screens"
 cp "$HOME/tampo/BGM Folder Diabled.mp3" $INSTALL_DIR
-cp -f $HOME/tampo/splashscreens/*.mp4 $HOME/RetroPie/splashscreens/
-cp -fr $HOME/tampo/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/
 
+if [ -d "$HOME/RetroPie/splashscreens/" ]; then
+	cp -f $HOME/tampo/splashscreens/*.mp4 $HOME/RetroPie/splashscreens/
+else
+	mkdir $HOME/tampo/splashscreens
+	cp -f $HOME/tampo/splashscreens/*.mp4 $HOME/RetroPie/splashscreens/
+fi
+if [ -d "$HOME/tampo/videoloadingscreens/" ]; then
+	cp -fr $HOME/tampo/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/
+else
+	mkdir $HOME/tampo/videoloadingscreens
+	cp -fr $HOME/tampo/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/
+fi
 if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/reboot" ]; then
 mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
 cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash"
@@ -438,16 +448,41 @@ if [[ ${ifexist2} > 0 ]]; then
 else
 
 cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.TAMPO
+cat <<\EOF1234 > "/tmp/templist2"
+#!/bin/sh
+### Begin VideoLoading Screens Function
+enablevideolaunch="true"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
+if [[ $enablevideolaunch == "true" ]]; then
+ # Extract file name from called ROM
+ gname="$(basename "$3")"
+ # build path to file and remove extension from ROM to add mp4 extension
+ # $HOME variable will help users that are not stick to raspberry ;)
+ ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
+ ifsystem="$videoloadingscreens/$1.mp4"
+ default="$videoloadingscreens/default.mp4"
 
-sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
-sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
-sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
+ # If condition to check filename with -f switch, f means regular file
+ if [[ -f $ifgame ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
+ elif [[ -f $ifsystem ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
+ elif [[ -f $default ]]; then
+    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
+ fi
+fi
+### End VideoLoading Screens Function
+EOF1234
+sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
 
 cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.TAMPO
 sed -i '/pkill -STOP mpg123/d' $RUNONSTART
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
 cat <<\EOF12345 > "/tmp/templist3"
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+#! /bin/bash
+# /etc/init.d/start-sound
+
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 EOF12345
 sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 fi
