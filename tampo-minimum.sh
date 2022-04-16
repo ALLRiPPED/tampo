@@ -1,6 +1,9 @@
 #!/bin/bash
 #Minimal TAMPO Script
 ver="v1.20"
+MENU_DIR="$HOME/RetroPie/retropiemenu"
+STMENU_DIR="$HOME/RetroPie/retropiemenu/visualtools"
+TAMPO_DIR="$HOME/tampo"
 SCRIPT_LOC="/home/pi/.tampo/BGM.py"
 INSTALL_DIR=$(dirname "${SCRIPT_LOC}")
 MUSIC_DIR="/home/pi/RetroPie/roms/music"
@@ -294,6 +297,57 @@ function download_screens() {
 }
 
 themesettings() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Theme Settings - Tampo $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Hursty Themes" \
+            2 "RetroPie Themes" \
+            3 "Tampo themes" \
+           2>&1 > /dev/tty)
+        case "$choice" in
+            1) hursty_themes ;;
+            2) retropie_themes ;;
+            3) tampo_themes ;;
+            *) break ;;
+        esac
+    done
+}
+
+hursty_themes() {
+if [ -f "$TAMPO_DIR/scripts/hurstythemes.sh" ]; then 
+
+#Adds Updated Version to tampo Folder
+if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes $TAMPO_DIR/scripts/; fi
+if [ -f "$STMENU_DIR/hurstythemes" ]; then sudo mv -f $STMENU_DIR/hurstythemes $TAMPO_DIR/scripts/; fi
+
+chmod +x $TAMPO_DIR/scripts/hurstythemes.sh
+$TAMPO_DIR/scripts/hurstythemes.sh
+
+else
+
+if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f $MENU_DIR/hurstythemes $TAMPO_DIR/scripts/; fi
+if [ -f "$STMENU_DIR/hurstythemes" ]; then sudo rm -f $STMENU_DIR/hurstythemes $TAMPO_DIR/scripts/; fi
+
+wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh
+chmod +x "install.sh"
+./install.sh
+
+if [ ! -d "$TAMPO_DIR/scripts" ]; then mkdir $TAMPO_DIR/scripts; fi
+
+mv -f $MENU_DIR/hurstythemes.sh $TAMPO_DIR/scripts/hurstythemes.sh
+$TAMPO_DIR/scripts/hurstythemes.sh
+
+fi
+}
+
+retropie_themes() {
+sudo ~/RetroPie-Setup/retropie_packages.sh esthemes gui
+}
+
+tampo_themes() {
 stats_check
     local choice
     while true; do
