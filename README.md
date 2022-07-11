@@ -1,4 +1,5 @@
-# Depricated please use https://github.com/ALLRiPPED/tamoplus
+# Depricated
+### Please use https://github.com/ALLRiPPED/tamoplus
 ## TAMPO: Theme And Music Plus Overlay v1.20
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
